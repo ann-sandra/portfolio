@@ -10,7 +10,7 @@
 <style>
   .about-section {
     text-align: center;
-    padding: 50px 0;
+    padding: 5px 0;
   }
   .about-section h2 {
     font-size: 2.5rem;
@@ -39,7 +39,7 @@
   box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Adds a subtle shadow around the card */
 }
 .card-img-top {
-  max-height: 120px; /* Adjust this value to fit the image properly in the card */
+  max-height: 250px; /* Adjust this value to fit the image properly in the card */
   object-fit: cover; /* This makes sure the image covers the area properly */
 }
 .card-body {
@@ -85,7 +85,7 @@
 
 /* Additional CSS for Contact Section */
 .contact-section {
-  padding: 80px 0;
+  padding: 15px 0;
   text-align: center;
 }
 .contact-section h2 {
@@ -98,7 +98,7 @@
 }
 .social-icon {
   width: 50px; /* Size of your icons */
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 /* Hover effect for icons */
 .social-icon:hover {
@@ -147,6 +147,50 @@ html {
 }
 
 
+
+
+
+/* Hide overlay content by default */
+.project-card .overlay-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Show overlay content on hover */
+.project-card:hover .overlay-content {
+  opacity: 1;
+}
+
+/* Show only the title initially */
+.project-card .card-title {
+  font-size: 1.5rem;
+  color: #fff;
+}
+
+.project-card .card-text,
+.project-card .btn {
+  display: none;
+}
+
+/* Display additional content on hover */
+.project-card:hover .card-text,
+.project-card:hover .btn {
+  display: block;
+}
+
+
+
 </style>
 
 </head>
@@ -159,55 +203,40 @@ html {
 <section id='about' class="about-section" >
   <div class="container">
     <div class="row align-items-center">
-      <div class="col-md-4 mb-4">
-        <img src="images/about/1.jpg" alt="About Image" class="img-fluid" style="border-radius: 8px;">
+      <div class=col-md-4 d-flex flex-column align-items-center">
+        <img src="images/about/1.jpg" alt="About Image" class="img-fluid" style="border-radius: 8px;margin-top: 4rem;">
+	<p style="text-align: center; margin-top: 10px;"> Feel free to contact me via email!
+        <a href="https://github.com/ann-sandra" target="_blank" style=" margin-top: 10px; color: #007bff; text-decoration: none;">annsandra98@gmail.com</a>
+	</p>
+
+
+    <div class="row contact-section d-flex justify-content-center mt-3" justify-content-center>
+      <div class="col-lg-2 col-md-4 mx-3 mb-4">
+        <a href="https://linkedin.com/in/yourusername" target="_blank">
+          <img src="icons/linkedin.png" alt="LinkedIn" class="social-icon" style ="width: 50px; height:50px; border-radius: 0;">
+          LinkedIn
+        </a>
+      </div>
+      <div class="col-lg-2 col-md-4 mb-4 mx-3">
+        <a href="https://github.com/yourusername" target="_blank">
+          <img src="icons/github.png" alt="GitHub" class="social-icon" style ="width: 50px; height:50px; border-radius: 0;">
+          GitHub
+        </a>
+      </div>
+    </div>
+
+
+
       </div>
       <div class="col-md-8">
     <h5 style="margin-top: 3rem; padding-left: 15px; text-align: left;"><b>ABOUT ME </b></h5>
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sit amet dolor dolor. Suspendisse ligula elit, hendrerit ut bibendum quis, facilisis vitae est. Vivamus vitae felis sit amet sem rhoncus euismod. Praesent commodo lorem porttitor. Nam in condimentum ex. Nam accumsan nisi turpis, sed tempus dolor volutpat non. Proin id enim feugiat ipsum consectetur mattis. Nam blandit venenatis nisi, convallis imperdiet nisi condimentum at.</p>
     <p>Duis convallis ligula sed pretium tristique. Duis nunc risus, lacinia eget cursus id, suscipit ac metus. Sed varius sed tortor congue aliquam. In in dapibus diam, in auctor purus. Praesent vitae tristique diam. Donec tincidunt hendrerit tortor, vitae lobortis purus rutrum sit amet. Nunc non arcu vitae leo rhoncus tincidunt vel sed urna. Sed sed efficitur dui. Morbi id velit nisi. Fusce luctus placerat purus eu cursus.</p>
+    <p>Duis convallis ligula sed pretium tristique. Duis nunc risus, lacinia eget cursus id, suscipit ac metus. Sed varius sed tortor congue aliquam. In in dapibus diam, in auctor purus. Praesent vitae tristique diam. Donec tincidunt hendrerit tortor, vitae lobortis purus rutrum sit amet. Nunc non arcu vitae leo rhoncus tincidunt vel sed urna. Sed sed efficitur dui. Morbi id velit nisi. Fusce luctus placerat purus eu cursus.</p>
   </div>
-
-  </div>
-</section>
-
-<!-- Contact Me Section -->
-<section id="contact" class="contact-section text-center text-white">
-  <div class="container">
-    <div class="row" justify-content-center>
-      <div class="col-lg-2 col-md-4 mx-3 mb-4">
-        <a href="https://linkedin.com/in/yourusername" target="_blank">
-          <img src="icons/linkedin.png" alt="LinkedIn" class="social-icon">
-          LinkedIn
-        </a>
-      </div>
-      <div class="col-lg-2 col-md-4 mb-4 mx-3">
-        <a href="https://twitter.com/yourusername" target="_blank">
-          <img src="icons/twitter.png" alt="Twitter" class="social-icon">
-          Twitter
-        </a>
-      </div>
-      <div class="col-lg-2 col-md-4 mb-4 mx-3">
-        <a href="https://github.com/yourusername" target="_blank">
-          <img src="icons/github.png" alt="GitHub" class="social-icon">
-          GitHub
-        </a>
-      </div>
-      <div class="col-lg-2 col-md-4 mb-4 mx-3">
-        <a href="https://medium.com/@yourusername" target="_blank">
-          <img src="icons/medium.png" alt="Medium" class="social-icon">
-          Medium
-        </a>
-      </div>
-      <div class="col-lg-2 col-md-4 mb-4 mx-3">
-        <a href="https://youtube.com/c/yourchannel" target="_blank">
-          <img src="icons/youtube.png" alt="YouTube" class="social-icon">
-          YouTube
-        </a>
-      </div>
-    </div>
   </div>
 </section>
+
 
 
 
@@ -218,71 +247,83 @@ html {
     <div class="row">
       <!-- Project 1 -->
       <div class="col-sm-12 col-md-4 mb-4">
-        <div class="card">
+        <div class="card project-card">
           <img src="images/projects/1.jpg" class="card-img-top" alt="Project 1">
-          <div class="card-body">
-            <h5 class="card-title">Project 1</h5>
+          <div class="card-img-overlay overlay-content">
             <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sed nisl erat. Sed et purus ornare, eleifend tellus ut, fermentum arcu.</p>
-            <a href="#" class="btn btn-primary">View More >></a>
+            <a href="#">View More >></a>
           </div>
         </div>
+         <div class="card-body">
+            <h5 class="card-title">Project 1</h5>
+          </div>
       </div>
       <!-- Project 2 -->
       <div class="col-sm-12 col-md-4 mb-4" >
-        <div class="card">
+        <div class="card project-card">
           <img src="images/projects/2.jpg" class="card-img-top" alt="Project 2">
-          <div class="card-body">
-            <h5 class="card-title">Project 2</h5>
+          <div class="card-img-overlay overlay-content">
             <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sed nisl erat. Sed et purus ornare, eleifend tellus ut, fermentum arcu.</p>
-            <a href="#" class="btn btn-primary">View More >></a>
+            <a href="#">View More >></a>
           </div>
         </div>
+         <div class="card-body">
+            <h5 class="card-title">Project 1</h5>
+          </div>
       </div>
       <!-- Project 3 -->
       <div class="col-sm-12 col-md-4 mb-4" >
-        <div class="card">
+        <div class="card project-card">
           <img src="images/projects/3.jpg" class="card-img-top" alt="Project 3">
-          <div class="card-body">
-            <h5 class="card-title">Project 3</h5>
+          <div class="card-img-overlay overlay-content">
             <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sed nisl erat. Sed et purus ornare, eleifend tellus ut, fermentum arcu.</p>
-            <a href="#" class="btn btn-primary">View More >></a>
+            <a href="#">View More >></a>
           </div>
         </div>
+         <div class="card-body">
+            <h5 class="card-title">Project 1</h5>
+          </div>
       </div>
 
 <div class="row">
       <!-- Project 1 -->
       <div class="col-sm-12 col-md-4 mb-4">
-        <div class="card">
+        <div class="card project-card">
           <img src="images/projects/1.jpg" class="card-img-top" alt="Project 1">
-          <div class="card-body">
-            <h5 class="card-title">Project 1</h5>
+          <div class="card-img-overlay overlay-content">
             <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sed nisl erat. Sed et purus ornare, eleifend tellus ut, fermentum arcu.</p>
-            <a href="#" class="btn btn-primary">View More >></a>
+            <a href="#">View More >></a>
           </div>
         </div>
+          <div class="card-body">
+            <h5 class="card-title">Project 1</h5>
+          </div>
       </div>
       <!-- Project 2 -->
       <div class="col-sm-12 col-md-4 mb-4">
-        <div class="card">
+        <div class="card project-card">
           <img src="images/projects/2.jpg" class="card-img-top" alt="Project 2">
-          <div class="card-body">
-            <h5 class="card-title">Project 2</h5>
+          <div class="card-img-overlay overlay-content">
             <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sed nisl erat. Sed et purus ornare, eleifend tellus ut, fermentum arcu.</p>
-            <a href="#" class="btn btn-primary">View More >></a>
+            <a href="#">View More >></a>
           </div>
         </div>
+         <div class="card-body">
+            <h5 class="card-title">Project 1</h5>
+          </div>
       </div>
       <!-- Project 3 -->
       <div class="col-sm-12 col-md-4 mb-4">
-        <div class="card">
+        <div class="card project-card">
           <img src="images/projects/3.jpg" class="card-img-top" alt="Project 3">
-          <div class="card-body">
-            <h5 class="card-title">Project 3</h5>
+          <div class="card-img-overlay overlay-content">
             <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sed nisl erat. Sed et purus ornare, eleifend tellus ut, fermentum arcu.</p>
-            <a href="#" class="btn btn-primary">View More >></a>
+            <a href="#">View More >></a>
           </div>
         </div>
+         <div class="card-body">
+            <h5 class="card-title">Project 1</h5>
+          </div>
       </div>
     </div>
   </div>
@@ -292,88 +333,93 @@ html {
 
 
 <!-- Small Projects Section -->
-<section id="projects" class="projects-section bg-white" id="projects">
+<section id="projects" class="projects-section bg-light" id="projects">
   <div class="container">
-    <h2 class="text-center"><B>ML AND DEEP LEARNING MODELS</B></h2>
+    <h2 class="text-center"><b>ML AND DEEP LEARNING MODELS</B></h2>
     <div class="row">
       <!-- Project 1 -->
       <div class="col-sm-12 col-md-4 mb-4">
-        <div class="card">
+        <div class="card project-card">
           <img src="images/projects/1.jpg" class="card-img-top" alt="Project 1">
-          <div class="card-body">
-            <h5 class="card-title">Project 1</h5>
+          <div class="card-img-overlay overlay-content">
             <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sed nisl erat. Sed et purus ornare, eleifend tellus ut, fermentum arcu.</p>
-            <a href="#" class="btn btn-primary">View More >></a>
+            <a href="#">View More >></a>
           </div>
         </div>
+         <div class="card-body">
+            <h5 class="card-title">Project 1</h5>
+          </div>
       </div>
       <!-- Project 2 -->
-      <div class="col-sm-12 col-md-4 mb-4">
-        <div class="card">
+      <div class="col-sm-12 col-md-4 mb-4" >
+        <div class="card project-card">
           <img src="images/projects/2.jpg" class="card-img-top" alt="Project 2">
-          <div class="card-body">
-            <h5 class="card-title">Project 2</h5>
+          <div class="card-img-overlay overlay-content">
             <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sed nisl erat. Sed et purus ornare, eleifend tellus ut, fermentum arcu.</p>
-            <a href="#" class="btn btn-primary">View More >></a>
+            <a href="#">View More >></a>
           </div>
         </div>
+         <div class="card-body">
+            <h5 class="card-title">Project 1</h5>
+          </div>
       </div>
       <!-- Project 3 -->
-      <div class="col-sm-12 col-md-4 mb-4">
-        <div class="card">
+      <div class="col-sm-12 col-md-4 mb-4" >
+        <div class="card project-card">
           <img src="images/projects/3.jpg" class="card-img-top" alt="Project 3">
-          <div class="card-body">
-            <h5 class="card-title">Project 3</h5>
+          <div class="card-img-overlay overlay-content">
             <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sed nisl erat. Sed et purus ornare, eleifend tellus ut, fermentum arcu.</p>
-            <a href="#" class="btn btn-primary">View More >></a>
+            <a href="#">View More >></a>
           </div>
         </div>
+         <div class="card-body">
+            <h5 class="card-title">Project 1</h5>
+          </div>
       </div>
 
 <div class="row">
       <!-- Project 1 -->
       <div class="col-sm-12 col-md-4 mb-4">
-        <div class="card">
+        <div class="card project-card">
           <img src="images/projects/1.jpg" class="card-img-top" alt="Project 1">
-          <div class="card-body">
-            <h5 class="card-title">Project 1</h5>
+          <div class="card-img-overlay overlay-content">
             <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sed nisl erat. Sed et purus ornare, eleifend tellus ut, fermentum arcu.</p>
-            <a href="#" class="btn btn-primary">View More >></a>
+            <a href="#">View More >></a>
           </div>
         </div>
+          <div class="card-body">
+            <h5 class="card-title">Project 1</h5>
+          </div>
       </div>
       <!-- Project 2 -->
       <div class="col-sm-12 col-md-4 mb-4">
-        <div class="card">
+        <div class="card project-card">
           <img src="images/projects/2.jpg" class="card-img-top" alt="Project 2">
-          <div class="card-body">
-            <h5 class="card-title">Project 2</h5>
+          <div class="card-img-overlay overlay-content">
             <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sed nisl erat. Sed et purus ornare, eleifend tellus ut, fermentum arcu.</p>
-            <a href="#" class="btn btn-primary">View More >></a>
+            <a href="#">View More >></a>
           </div>
         </div>
+         <div class="card-body">
+            <h5 class="card-title">Project 1</h5>
+          </div>
       </div>
       <!-- Project 3 -->
       <div class="col-sm-12 col-md-4 mb-4">
-        <div class="card">
+        <div class="card project-card">
           <img src="images/projects/3.jpg" class="card-img-top" alt="Project 3">
-          <div class="card-body">
-            <h5 class="card-title">Project 3</h5>
+          <div class="card-img-overlay overlay-content">
             <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sed nisl erat. Sed et purus ornare, eleifend tellus ut, fermentum arcu.</p>
-            <a href="#" class="btn btn-primary">View More >></a>
+            <a href="#">View More >></a>
           </div>
         </div>
+         <div class="card-body">
+            <h5 class="card-title">Project 1</h5>
+          </div>
       </div>
     </div>
   </div>
 </section>
-
-
-
-
-
-
-
 
 
 <!-- Sticky Navigation Bar -->
@@ -393,12 +439,6 @@ html {
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#projects">Projects</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#skills">Skills</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#contact">Contact</a>
         </li>
       </ul>
     </div>
