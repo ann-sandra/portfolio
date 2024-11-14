@@ -32,6 +32,29 @@
   font-size: 2.5rem;
 }
 
+/* Ensure all cards are the same size */
+.project-row {
+    display: flex;
+    justify-content: left;
+}
+
+.project-col {
+    flex: 0 0 33.333%; /* Occupies one-third of the row */
+    max-width: 33.333%;
+}
+
+.project-card {
+    height: 300px; /* Fixed height for all cards */
+    width: 370px;
+    overflow: hidden;
+}
+
+.project-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the image covers the entire card without distortion */
+}
+
 .projects-section {
   margin-bottom: 100px;
 }
@@ -251,24 +274,24 @@ html {
           <img src="images/projects/1.jpg" class="card-img-top" alt="Project 1">
           <div class="card-img-overlay overlay-content">
             <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sed nisl erat. Sed et purus ornare, eleifend tellus ut, fermentum arcu.</p>
-            <a href="project1.html">View More >></a>
+            <a href="Stress Analysis Modeling.html">View More >></a>
           </div>
         </div>
          <div class="card-body">
-            <h5 class="card-title">Project 1</h5>
+            <h5 class="card-title">Stress Analysis Modeling</h5>
           </div>
       </div>
       <!-- Project 2 -->
       <div class="col-sm-12 col-md-4 mb-4" >
         <div class="card project-card">
-          <img src="images/projects/2.jpg" class="card-img-top" alt="Project 2">
+          <img src="images/projects/2.webp" class="card-img-top" alt="Project 2">
           <div class="card-img-overlay overlay-content">
             <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sed nisl erat. Sed et purus ornare, eleifend tellus ut, fermentum arcu.</p>
-            <a href="#">View More >></a>
+            <a href="Wildlife Intrusion Detection.html">View More >></a>
           </div>
         </div>
          <div class="card-body">
-            <h5 class="card-title">Project 1</h5>
+            <h5 class="card-title">Wildlife Intrusion Detector</h5>
           </div>
       </div>
       <!-- Project 3 -->
@@ -277,65 +300,96 @@ html {
           <img src="images/projects/3.jpg" class="card-img-top" alt="Project 3">
           <div class="card-img-overlay overlay-content">
             <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sed nisl erat. Sed et purus ornare, eleifend tellus ut, fermentum arcu.</p>
-            <a href="#">View More >></a>
+            <a href="Road Safety Analysis.html">View More >></a>
           </div>
         </div>
          <div class="card-body">
-            <h5 class="card-title">Project 1</h5>
+            <h5 class="card-title">Road Safety Analysis</h5>
           </div>
       </div>
 
-<div class="row">
-      <!-- Project 1 -->
+      <div class="row">
+      <!-- Project 4 -->
       <div class="col-sm-12 col-md-4 mb-4">
         <div class="card project-card">
-          <img src="images/projects/1.jpg" class="card-img-top" alt="Project 1">
+          <img src="images/projects/1.jpg" class="card-img-top" alt="Project 4">
           <div class="card-img-overlay overlay-content">
             <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sed nisl erat. Sed et purus ornare, eleifend tellus ut, fermentum arcu.</p>
-            <a href="#">View More >></a>
+            <a href="Restaurant Recommendation System.html">View More >></a>
           </div>
         </div>
           <div class="card-body">
-            <h5 class="card-title">Project 1</h5>
+            <h5 class="card-title">Restaurant Recommendation System</h5>
           </div>
       </div>
-      <!-- Project 2 -->
+      <!-- Project 5 -->
       <div class="col-sm-12 col-md-4 mb-4">
         <div class="card project-card">
-          <img src="images/projects/2.jpg" class="card-img-top" alt="Project 2">
+          <img src="images/projects/2.jpg" class="card-img-top" alt="Project 5">
           <div class="card-img-overlay overlay-content">
             <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sed nisl erat. Sed et purus ornare, eleifend tellus ut, fermentum arcu.</p>
-            <a href="#">View More >></a>
+            <a href="Predictive HR Analytics.html">View More >></a>
           </div>
         </div>
          <div class="card-body">
-            <h5 class="card-title">Project 1</h5>
+            <h5 class="card-title">Predictive HR Analytics</h5>
           </div>
       </div>
-      <!-- Project 3 -->
+      <!-- Project 6 -->
       <div class="col-sm-12 col-md-4 mb-4">
         <div class="card project-card">
-          <img src="images/projects/3.jpg" class="card-img-top" alt="Project 3">
+          <img src="images/projects/3.jpg" class="card-img-top" alt="Project 6">
           <div class="card-img-overlay overlay-content">
             <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sed nisl erat. Sed et purus ornare, eleifend tellus ut, fermentum arcu.</p>
-            <a href="#">View More >></a>
+            <a href="Retail Demand Forecasting.html">View More >></a>
           </div>
         </div>
          <div class="card-body">
-            <h5 class="card-title">Project 1</h5>
+            <h5 class="card-title">Retail Demand Forecasting</h5>
           </div>
       </div>
     </div>
+
+<div class="row project-row">
+      <!-- Project 7 -->
+      <div class="project-col col-sm-12 col-md-4 mb-4">
+        <div class="card project-card">
+          <img src="images/projects/1.jpg" class="card-img-top project-image" alt="Project 7">
+          <div class="card-img-overlay overlay-content">
+            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sed nisl erat. Sed et purus ornare, eleifend tellus ut, fermentum arcu.</p>
+            <a href="Behavioral Fraud Analytics.html">View More >></a>
+          </div>
+        </div>
+         <div class="card-body">
+            <h5 class="card-title">Behavioral Fraud Analytics</h5>
+          </div>
+      </div>
+
+
+      </div>
+      <!-- Project 8 -->
+      <div class="project-col col-sm-12 col-md-4 mb-4">
+        <div class="card project-card">
+          <img src="images/projects/2.jpg" class="card-img-top project-image" alt="Project 8">
+          <div class="card-img-overlay overlay-content">
+            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sed nisl erat. Sed et purus ornare, eleifend tellus ut, fermentum arcu.</p>
+            <a href="Medical Insurance Quote Predictor.html">View More >></a>
+          </div>
+        </div>
+         <div class="card-body">
+            <h5 class="card-title">Medical Insurance Quoter</h5>
+          </div>
+      </div>
   </div>
 </section>
 
 
 
 
-<!-- Small Projects Section -->
+<!-- ML Projects Section -->
 <section id="projects" class="projects-section bg-light" id="projects">
   <div class="container">
-    <h2 class="text-center"><b>ML AND DEEP LEARNING MODELS</B></h2>
+    <h2 class="text-center"><b>MACHINE LEARNING MODELS</B></h2>
     <div class="row">
       <!-- Project 1 -->
       <div class="col-sm-12 col-md-4 mb-4">
@@ -343,11 +397,11 @@ html {
           <img src="images/projects/1.jpg" class="card-img-top" alt="Project 1">
           <div class="card-img-overlay overlay-content">
             <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sed nisl erat. Sed et purus ornare, eleifend tellus ut, fermentum arcu.</p>
-            <a href="#">View More >></a>
+            <a href="https://github.com/ann-sandra/ML-DL-Projects/blob/3b0c8c4f9749c2d9db97bbcce436aeabfaa10aa2/Machine%20Learning/Restaurant%20Recommendation%20System%20-%20Collaborative%20filtering">View More >></a>
           </div>
         </div>
          <div class="card-body">
-            <h5 class="card-title">Project 1</h5>
+            <h5 class="card-title">Movie Reviews Sentiment Analysis</h5>
           </div>
       </div>
       <!-- Project 2 -->
@@ -356,11 +410,11 @@ html {
           <img src="images/projects/2.jpg" class="card-img-top" alt="Project 2">
           <div class="card-img-overlay overlay-content">
             <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sed nisl erat. Sed et purus ornare, eleifend tellus ut, fermentum arcu.</p>
-            <a href="#">View More >></a>
+            <a href="https://github.com/ann-sandra/ML-DL-Projects/tree/3b0c8c4f9749c2d9db97bbcce436aeabfaa10aa2/Machine%20Learning/Sagemaker/Disease%20Prediction%20-%20PCA%20and%20XGB">View More >></a>
           </div>
         </div>
          <div class="card-body">
-            <h5 class="card-title">Project 1</h5>
+            <h5 class="card-title">Predictive Health Diagnostics</h5>
           </div>
       </div>
       <!-- Project 3 -->
@@ -369,57 +423,107 @@ html {
           <img src="images/projects/3.jpg" class="card-img-top" alt="Project 3">
           <div class="card-img-overlay overlay-content">
             <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sed nisl erat. Sed et purus ornare, eleifend tellus ut, fermentum arcu.</p>
-            <a href="#">View More >></a>
+            <a href="https://github.com/ann-sandra/Supermarket-Sales-Prediction">View More >></a>
           </div>
         </div>
          <div class="card-body">
-            <h5 class="card-title">Project 1</h5>
+            <h5 class="card-title">Supermarket Sales Predictor</h5>
           </div>
       </div>
 
 <div class="row">
+      <!-- Project 4 -->
+      <div class="col-sm-12 col-md-4 mb-4">
+        <div class="card project-card">
+          <img src="images/projects/1.jpg" class="card-img-top" alt="Project 4">
+          <div class="card-img-overlay overlay-content">
+            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sed nisl erat. Sed et purus ornare, eleifend tellus ut, fermentum arcu.</p>
+            <a href="https://github.com/ann-sandra/Housing-Sale-Price-Analysis">View More >></a>
+          </div>
+        </div>
+          <div class="card-body">
+            <h5 class="card-title">Property Pricing Analysis</h5>
+          </div>
+      </div>
+      <!-- Project 5 -->
+      <div class="col-sm-12 col-md-4 mb-4">
+        <div class="card project-card">
+          <img src="images/projects/2.jpg" class="card-img-top" alt="Project 5">
+          <div class="card-img-overlay overlay-content">
+            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sed nisl erat. Sed et purus ornare, eleifend tellus ut, fermentum arcu.</p>
+            <a href="https://github.com/ann-sandra/ML-DL-Projects/tree/3b0c8c4f9749c2d9db97bbcce436aeabfaa10aa2/Machine%20Learning/Plant%20Species%20Classification">View More >></a>
+          </div>
+        </div>
+         <div class="card-body">
+            <h5 class="card-title">Plant Species Classifier</h5>
+          </div>
+      </div>
+      <!-- Project 6 -->
+      <div class="col-sm-12 col-md-4 mb-4">
+        <div class="card project-card">
+          <img src="images/projects/3.jpg" class="card-img-top" alt="Project 6">
+          <div class="card-img-overlay overlay-content">
+            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sed nisl erat. Sed et purus ornare, eleifend tellus ut, fermentum arcu.</p>
+            <a href="https://github.com/ann-sandra/ML-DL-Projects/tree/3b0c8c4f9749c2d9db97bbcce436aeabfaa10aa2/Machine%20Learning/Purchase%20Predictor%20-%20Classification">View More >></a>
+          </div>
+        </div>
+         <div class="card-body">
+            <h5 class="card-title">Ad Response Predictor</h5>
+          </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- DL Projects Section -->
+<section id="projects" class="projects-section bg-light" id="projects">
+  <div class="container">
+    <h2 class="text-center"><b>DEEP LEARNING MODELS</B></h2>
+    <div class="row">
       <!-- Project 1 -->
       <div class="col-sm-12 col-md-4 mb-4">
         <div class="card project-card">
           <img src="images/projects/1.jpg" class="card-img-top" alt="Project 1">
           <div class="card-img-overlay overlay-content">
             <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sed nisl erat. Sed et purus ornare, eleifend tellus ut, fermentum arcu.</p>
-            <a href="#">View More >></a>
+            <a href="https://github.com/ann-sandra/ML-DL-Projects/tree/3b0c8c4f9749c2d9db97bbcce436aeabfaa10aa2/Deep%20Learning/Animal%20Image%20Classifier%20-%20CNN">View More >></a>
           </div>
         </div>
-          <div class="card-body">
-            <h5 class="card-title">Project 1</h5>
+         <div class="card-body">
+            <h5 class="card-title">Animal Image Classifier</h5>
           </div>
       </div>
       <!-- Project 2 -->
-      <div class="col-sm-12 col-md-4 mb-4">
+      <div class="col-sm-12 col-md-4 mb-4" >
         <div class="card project-card">
           <img src="images/projects/2.jpg" class="card-img-top" alt="Project 2">
           <div class="card-img-overlay overlay-content">
             <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sed nisl erat. Sed et purus ornare, eleifend tellus ut, fermentum arcu.</p>
-            <a href="#">View More >></a>
+            <a href="https://github.com/ann-sandra/ML-DL-Projects/tree/3b0c8c4f9749c2d9db97bbcce436aeabfaa10aa2/Deep%20Learning/Stock%20Price%20Prediction%20-%20RNN">View More >></a>
           </div>
         </div>
          <div class="card-body">
-            <h5 class="card-title">Project 1</h5>
+            <h5 class="card-title">Stock Price Predictor</h5>
           </div>
       </div>
       <!-- Project 3 -->
-      <div class="col-sm-12 col-md-4 mb-4">
+      <div class="col-sm-12 col-md-4 mb-4" >
         <div class="card project-card">
           <img src="images/projects/3.jpg" class="card-img-top" alt="Project 3">
           <div class="card-img-overlay overlay-content">
             <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sed nisl erat. Sed et purus ornare, eleifend tellus ut, fermentum arcu.</p>
-            <a href="#">View More >></a>
+            <a href="https://github.com/ann-sandra/ML-DL-Projects/tree/3b0c8c4f9749c2d9db97bbcce436aeabfaa10aa2/Deep%20Learning/Bank%20Customer%20Churn%20Prediction%20-%20ANN">View More >></a>
           </div>
         </div>
          <div class="card-body">
-            <h5 class="card-title">Project 1</h5>
+            <h5 class="card-title">Bank Customer Churn Predictor</h5>
           </div>
       </div>
-    </div>
   </div>
 </section>
+
 
 
 <!-- Sticky Navigation Bar -->
