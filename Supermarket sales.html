@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Supermarket Sales Predictor</title>
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<style>
+h2 {
+    font-size: 30px;
+}
+h3 {
+    font-size: 23px;
+}
+
+        ul {
+            margin: 10px 20px;
+            padding: 0;
+        }
+        ul li {
+            margin: 5px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: white;
+        }
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        table th {
+            background-color: #f2f2f2;
+        }
+        table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        table tr:hover {
+            background-color: #f1f1f1;
+        }
+        code {
+            background-color: #eef;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: monospace;
+		color: black;
+        }
+        .projects {
+            margin-bottom: 20px;
+        }
+        .projects:last-child {
+            margin-bottom: 0;
+        }
+
+  .about-section {
+    text-align: center;
+    padding: 5px 0;
+  }
+  .about-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+  }
+  .about-section img {
+    width: 200px; /* Adjust the size as needed */
+    height: 200px;
+    border-radius: 50%; /* Makes the image round */
+    margin-bottom: 10px;
+  }
+  .about-section p {
+    color: #333;
+  }
+
+  /* Additional CSS for Projects Section */
+.projects-section h2 {
+  margin-bottom: 40px;
+  font-size: 2.5rem;
+}
+
+.projects-section {
+  margin-bottom: 100px;
+}
+.card {
+  box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Adds a subtle shadow around the card */
+}
+.card-img-top {
+  max-height: 250px; /* Adjust this value to fit the image properly in the card */
+  object-fit: cover; /* This makes sure the image covers the area properly */
+}
+.card-body {
+  padding: 15px;
+}
+.card-title {
+  font-size: 1.25rem;
+}
+.card-text {
+  margin-bottom: 15px;
+}
+
+/* Additional CSS for Skills Section */
+.skills-section h2 {
+  margin-bottom: 40px;
+  font-size: 2.5rem;
+}
+.skills-section .card {
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+.skills-section .card-img-top {
+  padding: 20px; /* Add padding around your images if needed */
+  background-color: #f8f9fa; /* Adjust the background color if your images have transparent areas */
+  height: 180px; /* Fixed height for consistency */
+  object-fit: contain; /* This will make sure the image is scaled properly within the container */
+}
+.skills-section .card-body {
+  padding: 15px;
+}
+.skills-section .card-title {
+  font-size: 1.25rem;
+  margin-bottom: 15px;
+}
+.skills-section .btn-outline-primary {
+  color: #007bff;
+  border-color: #007bff;
+}
+.skills-section .btn-outline-primary:hover {
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+/* Additional CSS for Contact Section */
+.contact-section {
+  padding: 15px 0;
+  text-align: center;
+}
+.contact-section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+}
+.contact-section p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+.social-icon {
+  width: 50px; /* Size of your icons */
+  margin-bottom: 5px;
+}
+/* Hover effect for icons */
+.social-icon:hover {
+  opacity: 0.7;
+}
+/* Style for links in the Contact section */
+.contact-section a {
+  color: #fff;
+  text-decoration: none; /* Removes underline from links */
+  display: inline-block; /* Allows for margin on the bottom */
+  margin-bottom: 10px;
+}
+.contact-section a:hover {
+  color: #ddd; /* Color when hovering over the link */
+}
+
+/* CSS for Sticky Navbar */
+.navbar {
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Adds a shadow for depth */
+}
+
+/* Ensure padding is added to body to avoid content being hidden behind the navbar */
+body { 
+  padding-top: 56px; /* Adjust this value based on the height of your navbar */
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Style for navigation bar links */
+.navbar-nav .nav-link {
+  color: white;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #f8f9fa; /* Slightly lighter white when hovering over links */
+}
+
+/* Media query for responsive navbar collapsing */
+@media (max-width: 992px) {
+  .navbar-collapse {
+    background-color: #343a40; /* Same as navbar color for seamless look */
+  }
+}
+
+
+
+
+
+/* Hide overlay content by default */
+.project-card .overlay-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Show overlay content on hover */
+.project-card:hover .overlay-content {
+  opacity: 1;
+}
+
+/* Show only the title initially */
+.project-card .card-title {
+  font-size: 1.5rem;
+  color: #fff;
+}
+
+.project-card .card-text,
+.project-card .btn {
+  display: none;
+}
+
+/* Display additional content on hover */
+.project-card:hover .card-text,
+.project-card:hover .btn {
+  display: block;
+}
+
+
+
+</style>
+
+</head>
+<body>
+
+<section class="about-section" style=" padding: 40px 0 10px 0; text-align: center;">
+  <h2 style="color: black; font-weight: bold;">Supermarket Sales Predictor</h2>
+</section>
+
+<p>This project aims to predict the quantity of products sold in a supermarket using regression models and identify transaction characteristics by clustering the data. The project provides valuable insights into supermarket sales and customer purchasing behaviors.</p>
+<hr>
+<h2 id="-project-overview-"><strong>Project Overview</strong></h2>
+<p>Supermarkets generate large amounts of transactional data daily. Analyzing this data helps understand customer purchasing patterns, predict sales, and optimize product offerings. This project uses machine learning techniques to:  </p>
+<ul>
+<li><strong>Predict Quantity Sold</strong>: Build regression models to predict the quantity of products sold.  </li>
+<li><strong>Cluster Transactions</strong>: Group transactions using <strong>K-Means Clustering</strong> to understand patterns among different types of purchases.  </li>
+</ul>
+<hr>
+<h2 id="-dataset-structure-"><strong>Dataset Structure</strong></h2>
+<p>The dataset contains detailed information about transactions:  </p>
+<pre><code>dataset/
+├── Supermarket_sales.<span class="hljs-built_in">csv</span>
+</code></pre><h3 id="-columns-in-the-dataset-"><strong>Columns in the Dataset</strong></h3>
+<ul>
+<li><strong>Product Details</strong>:  <ul>
+<li><code>Product Category</code>, <code>Product Subcategory</code>, <code>Product Rating</code>, <code>Product Score 1</code>, <code>Product Score 2</code>, <code>Product ID</code>.  </li>
+</ul>
+</li>
+<li><strong>Transaction Details</strong>:  <ul>
+<li><code>Transaction Number</code>, <code>Transaction Date</code>, <code>Total Amount Per Unit</code>, <code>Quantity</code>.  </li>
+</ul>
+</li>
+<li><strong>Customer Details</strong> (with missing values):  <ul>
+<li><code>Age</code>, <code>State Code</code>, <code>Annual Income</code>, <code>Occupation Level</code>.  </li>
+</ul>
+</li>
+<li><strong>Seller Details</strong>:  <ul>
+<li><code>Seller ID</code>.  </li>
+</ul>
+</li>
+<li><strong>Pricing Details</strong>:  <ul>
+<li><code>Base Price</code>, <code>Discount Percentage</code>, <code>Service Charge Percentage</code>.  </li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="-data-preprocessing-"><strong>Data Preprocessing</strong></h2>
+<h3 id="-1-handling-missing-values-"><strong>1. Handling Missing Values</strong></h3>
+<ul>
+<li>Columns with missing values (<code>Age</code>, <code>State Code</code>, <code>Annual Income</code>, <code>Occupation Level</code>) were imputed using <strong>KNNImputer</strong> to replace missing entries with the nearest neighbors.  </li>
+</ul>
+<h3 id="-2-feature-engineering-"><strong>2. Feature Engineering</strong></h3>
+<ul>
+<li><strong>Cyclical Features</strong>:  <ul>
+<li>Extracted <code>Day of Week</code> and <code>Month of Year</code> from the <code>Transaction Date</code> to encode cyclical patterns in time-related data.  </li>
+</ul>
+</li>
+</ul>
+<h3 id="-3-feature-reduction-"><strong>3. Feature Reduction</strong></h3>
+<ul>
+<li>Dropped irrelevant columns (e.g., <code>Transaction Number</code>, <code>Customer ID</code>, <code>Seller ID</code>) to focus on attributes directly influencing sales and clustering.  </li>
+</ul>
+<h3 id="-4-feature-scaling-"><strong>4. Feature Scaling</strong></h3>
+<ul>
+<li>Applied MinMax Scaling to ensure numerical columns had values between 0 and 1.  </li>
+</ul>
+<h3 id="-5-categorical-encoding-"><strong>5. Categorical Encoding</strong></h3>
+<ul>
+<li>Encoded categorical variables using <strong>Label Encoding</strong> to prepare product category and subcategory for regression and clustering models.  </li>
+</ul>
+<h3 id="-6-outlier-removal-"><strong>6. Outlier Removal</strong></h3>
+<ul>
+<li>Visualized outliers using boxplots and removed them using the <strong>IQR method</strong> (values outside fences).  </li>
+</ul>
+<hr>
+<h2 id="-exploratory-data-analysis-"><strong>Exploratory Data Analysis</strong></h2>
+<ul>
+<li><strong>Bar Plots</strong>: Explored data distributions and relationships, observing:  <ul>
+<li>Product score affects quantity sold.  </li>
+<li>Total amount per unit impacts quantity sold.  </li>
+</ul>
+</li>
+<li><strong>Sweetviz Analysis</strong>: Comprehensive visual report of the dataset is stored in <a href="./Sales%20EDA.html"><strong>sales EDA.html</strong></a>.  </li>
+</ul>
+<h3 id="-1-correlation-analysis-"><strong>1. Correlation Analysis</strong></h3>
+<ul>
+<li>Generated a <strong>Correlation Heatmap</strong> to identify relationships between features.  </li>
+<li>Strong correlations were observed between:  <ul>
+<li><code>Product Score 1</code> and <code>Base Price</code>.  </li>
+<li><code>Product Score 2</code> and <code>Product Rating</code>.
+<img src="image/correlation.png" alt="heat map" width="500"/>  </li>
+</ul>
+</li>
+</ul>
+<h3 id="-2-dimensionality-reduction-"><strong>2. Dimensionality Reduction</strong></h3>
+<ul>
+<li><strong>Principal Component Analysis (PCA)</strong>:  <ul>
+<li>Merged correlated features into single components for better model performance:  <ul>
+<li><code>Product Score 1</code> and <code>Base Price</code>.  </li>
+<li><code>Product Score 2</code> and <code>Product Rating</code>.<br><img src="image/correlation1.png" alt="heat map after PCA" width="500"/>  </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="-model-building-and-results-"><strong>Model Building and Results</strong></h2>
+<h3 id="-regression-models-"><strong>Regression Models</strong></h3>
+<p>The following regression models were tested using <strong>5-Fold Cross Validation</strong> after hyperparameter tuning:  </p>
+<table>
+<thead>
+<tr>
+<th><strong>Model</strong></th>
+<th><strong>MSE</strong></th>
+<th><strong>R²</strong></th>
+<th><strong>RMSE</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Linear Regression</strong></td>
+<td>147.38</td>
+<td>-0.00</td>
+<td>12.14</td>
+</tr>
+<tr>
+<td><strong>Lasso Regression</strong></td>
+<td>146.80</td>
+<td>-0.00</td>
+<td>12.12</td>
+</tr>
+<tr>
+<td><strong>Decision Tree Regressor</strong></td>
+<td>321.26</td>
+<td>-1.19</td>
+<td>17.92</td>
+</tr>
+<tr>
+<td><strong>Random Forest Regressor</strong></td>
+<td>158.38</td>
+<td>-0.08</td>
+<td>12.58</td>
+</tr>
+<tr>
+<td><strong>Ridge Regression</strong></td>
+<td>147.38</td>
+<td>-0.00</td>
+<td>12.14</td>
+</tr>
+<tr>
+<td><strong>Polynomial Regression</strong></td>
+<td>150.77</td>
+<td>-0.03</td>
+<td>12.28</td>
+</tr>
+</tbody>
+</table>
+<h3 id="-selected-model-"><strong>Selected Model</strong></h3>
+<ul>
+<li><strong>Lasso Regression</strong> was chosen for its lowest <strong>Mean Squared Error (MSE)</strong> and simplicity.  </li>
+</ul>
+<h3 id="-feature-importance-"><strong>Feature Importance</strong></h3>
+<ul>
+<li>Features influencing sales:  <ul>
+<li><strong>Product Subcategory</strong>.  </li>
+<li><strong>Day of the Week</strong>.  </li>
+<li><strong>Month</strong>.  </li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="-clustering-analysis-"><strong>Clustering Analysis</strong></h2>
+<h3 id="-k-means-clustering-"><strong>K-Means Clustering</strong></h3>
+<ul>
+<li>Clustering was performed on transactions from the past 6 months using the following features:  <ul>
+<li><code>Product Category</code>, <code>Product Subcategory</code>, <code>Product Score 1</code>, <code>Product Score 2</code>, <code>Total Amount Per Unit</code>, <code>Product Rating</code>.  </li>
+</ul>
+</li>
+<li><strong>Optimal K</strong>: Determined using the <strong>Elbow Method</strong>, which identified <strong>K=5</strong> as the optimal number of clusters.<br><img src="image/elbow.png" alt="optimal K selection" width="500"/>  </li>
+</ul>
+<hr>
+<h2 id="-cluster-insights-"><strong>Cluster Insights</strong></h2>
+<p>The following patterns were observed among the clusters:</p>
+<table>
+<thead>
+<tr>
+<th><strong>Cluster</strong></th>
+<th><strong>Characteristics</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Cluster 0</strong></td>
+<td><strong>High-End Buyers with Moderate Product Rating</strong>: Buyers prioritize high-quality products and are forgiving of minor flaws.</td>
+</tr>
+<tr>
+<td><strong>Cluster 1</strong></td>
+<td><strong>Top-Rated Products with Moderate Spending</strong>: Buyers focus on highly-rated products that balance quality and price.</td>
+</tr>
+<tr>
+<td><strong>Cluster 2</strong></td>
+<td><strong>Balanced Products for Value-Conscious Buyers</strong>: Buyers seek good performance at reasonable costs.</td>
+</tr>
+<tr>
+<td><strong>Cluster 3</strong></td>
+<td><strong>Budget-Friendly Products with Average Ratings</strong>: Buyers prioritize affordability while accepting basic functionality.</td>
+</tr>
+<tr>
+<td><strong>Cluster 4</strong></td>
+<td><strong>Niche Market for Average-Quality Products</strong>: Buyers pay more for specific features, even with average reviews.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="-interpretation-"><strong>Interpretation</strong></h2>
+<p><img src="https://github.com/ann-sandra/Supermarket-Sales-Prediction/blob/b5a08f1137b0defad293af5976edde00a25a5068/image/cluster.png" alt="cluster analysis" width="1000"/> </p>
+<p><strong>Cluster 0:</strong></p>
+<p><strong>High-End Buyers with Moderate Product Rating</strong>: This cluster represents products with high product score 1 (51.31), slightly below average product score 2 (-1.20), and high total amount per unit (30.29). However, they have a moderate product rating (3.05). This suggests that buyers in this cluster prioritize high-quality products but are more forgiving of minor flaws. They might be willing to pay more for a product that meets their basic needs but may not be overly concerned with aesthetics or additional features.</p>
+<p><strong>Cluster 1:</strong></p>
+<p><strong>Top-Rated Products with Moderate Spending</strong>: This cluster includes products with the highest product score 1 (97.50), slightly above average product score 2 (1.01), and a moderate total amount per unit (59.51). Additionally, they have the highest product rating (4.43). This indicates that buyers in this cluster prioritize both high-quality products and positive customer reviews. They are willing to spend more on products that are highly rated and offer excellent performance.</p>
+<p><strong>Cluster 2:</strong></p>
+<p><strong>Balanced Products for Value-Conscious Buyers</strong>: This cluster consists of products with moderate product score 1 (56.35), slightly below average product score 2 (-0.86), and a moderate total amount per unit (33.06). Their product rating is also moderate (3.49). This suggests that buyers in this cluster value a balance between quality and price. They are looking for products that offer good performance at a reasonable cost.</p>
+<p><strong>Cluster 3:</strong></p>
+<p><strong>Budget-Friendly Products with Average Rating</strong>: This cluster includes products with moderate product score 1 (52.38), the lowest product score 2 (-1.66), and the lowest total amount per unit (29.32). Their product rating is average (4.33). This suggests that buyers in this cluster prioritize affordability. They are looking for products that offer basic functionality at a low price point and may be less concerned with minor flaws or lack of advanced features.</p>
+<p><strong>Cluster 4:</strong></p>
+<p><strong>Average-Quality Products for Niche Market</strong>: This cluster consists of products with slightly above average product score 1 (65.18), slightly above average product score 2 (0.42), and the highest total amount per unit (40.75). However, their product rating is the lowest (2.50). This suggests that buyers in this cluster prioritize specific features or cater to a niche market. They might be willing to pay more for a product that meets their unique needs, even if the overall quality or customer reviews are average.</p>
+<hr>
+<h2 id="-how-to-use-"><strong>How to Use</strong></h2>
+<h3 id="-prerequisites-"><strong>Prerequisites</strong></h3>
+<ol>
+<li>Python 3.7+  </li>
+<li>Install required libraries:<pre><code class="lang-bash">pip <span class="hljs-keyword">install </span>numpy pandas <span class="hljs-keyword">scikit-learn </span>matplotlib
+</code></pre>
+</li>
+</ol>
+<hr>
+<h2 id="-future-improvements-"><strong>Future Improvements</strong></h2>
+<ol>
+<li><strong>Deep Learning Models</strong>: Use advanced neural networks like ANN or RNN for capturing complex, non-linear relationships in the data.  </li>
+<li><strong>Time-Series Analysis</strong>: Incorporate temporal patterns in the data for better sales forecasting.  </li>
+<li><strong>Enhanced Feature Engineering</strong>: Explore additional cyclical and interaction features for improved model accuracy.  </li>
+</ol>
+
+
+
+
+
+<!-- Sticky Navigation Bar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="#home">Portfolio</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="#home">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#about">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#projects">Featured</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#mlprojects">ML Projects</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#dlprojects">DL Projects</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Bootstrap JS and dependencies (jQuery and Popper) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.9.5/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
