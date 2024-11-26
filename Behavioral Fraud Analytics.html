@@ -8,6 +8,59 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
 <style>
+h2 {
+    font-size: 30px;
+
+}
+h3 {
+    font-size: 23px;
+}
+h4 {
+    font-size: 20px;
+font-weight:bold;
+}
+
+        ul {
+            margin: 10px 20px;
+            padding: 0;
+        }
+        ul li {
+            margin: 5px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: white;
+        }
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        table th {
+            background-color: #f2f2f2;
+        }
+        table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        table tr:hover {
+            background-color: #f1f1f1;
+        }
+        code {
+            background-color: #eef;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: monospace;
+		color: black;
+        }
+        .projects {
+            margin-bottom: 20px;
+        }
+        .projects:last-child {
+            margin-bottom: 0;
+        }
+
   .about-section {
     text-align: center;
     padding: 5px 0;
@@ -196,19 +249,187 @@ html {
 </head>
 <body>
 
-<section class="about-section" style=" padding: 100px 0 50px 0; text-align: center;">
+<section class="about-section" style=" padding: 40px 0 10px 0; text-align: center;">
   <h2 style="color: black; font-weight: bold;">Behavioral Fraud Analytics</h2>
 </section>
 
-<section id='about' class="about-section" >
-  <div class="container-fluid">
-      <div class="col-md-12">
-    <h5 style="margin-top: 3rem; padding-left: 15px; text-align: left;"><b>Objective </b></h5>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sit amet dolor dolor. Suspendisse ligula elit, hendrerit ut bibendum quis, facilisis vitae est. Vivamus vitae felis sit amet sem rhoncus euismod. Praesent commodo lorem porttitor. Nam in condimentum ex. Nam accumsan nisi turpis, sed tempus dolor volutpat non. Proin id enim feugiat ipsum consectetur mattis. Nam blandit venenatis nisi, convallis imperdiet nisi condimentum at.</p>
-    <p>Duis convallis ligula sed pretium tristique. Duis nunc risus, lacinia eget cursus id, suscipit ac metus. Sed varius sed tortor congue aliquam. In in dapibus diam, in auctor purus. Praesent vitae tristique diam. Donec tincidunt hendrerit tortor, vitae lobortis purus rutrum sit amet. Nunc non arcu vitae leo rhoncus tincidunt vel sed urna. Sed sed efficitur dui. Morbi id velit nisi. Fusce luctus placerat purus eu cursus.</p>
-    <p>Duis convallis ligula sed pretium tristique. Duis nunc risus, lacinia eget cursus id, suscipit ac metus. Sed varius sed tortor congue aliquam. In in dapibus diam, in auctor purus. Praesent vitae tristique diam. Donec tincidunt hendrerit tortor, vitae lobortis purus rutrum sit amet. Nunc non arcu vitae leo rhoncus tincidunt vel sed urna. Sed sed efficitur dui. Morbi id velit nisi. Fusce luctus placerat purus eu cursus.</p>
-  </div>
-</section>
+
+<p>This project combines Self-Organizing Maps (SOM) and Artificial Neural Networks (ANN) to detect and classify fraudulent credit card applications.</p>
+<hr>
+<h2 id="project-overview"><strong>Project Overview</strong></h2>
+<p>This project focuses on identifying fraudulent credit card applications by leveraging a two-step approach: first, using Self-Organizing Maps (SOM) to detect anomalies and identify potential fraud cases; and second, training an Artificial Neural Network (ANN) to classify applications as fraudulent or legitimate with high accuracy.</p>
+<hr>
+<h2 id="dataset"><strong>Dataset</strong></h2>
+<h3 id="-file-name-"><strong>File Name</strong>:</h3>
+<p><code>Credit_Card_applications.csv</code>  </p>
+<h3 id="-dataset-structure-"><strong>Dataset Structure</strong>:</h3>
+<ul>
+<li><strong>Features</strong>:  <ul>
+<li><code>customer_id</code>: Unique identifier for each applicant  </li>
+<li><code>A1</code> to <code>A14</code>: Attributes describing applicant details  </li>
+<li><code>class</code>: Target variable  <ul>
+<li><code>0</code>: Credit card not approved  </li>
+<li><code>1</code>: Credit card approved</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="-libraries-used-"><strong>Libraries Used</strong></h3>
+<ul>
+<li><code>pandas</code>  </li>
+<li><code>numpy</code>  </li>
+<li><code>matplotlib</code></li>
+</ul>
+<h3 id="-subject-areas-"><strong>Subject Areas</strong>:</h3>
+<p><code>Fraud Detection Using SOM</code>, <code>Neural Network Classifier</code>, <code>Behavioral Analytics ,</code>, <code>Anomaly Detection with Unsupervised Learning</code></p>
+<hr>
+<h2 id="exploratory-data-analysis-eda-"><strong>Exploratory Data Analysis(EDA):</strong></h2>
+<ul>
+<li><code>A3</code> and <code>A7</code>: Most values lie between 0 to 5.</li>
+<li><img src="https://github.com/ann-sandra/Insurance-Fraud-Prediction/blob/main/image/A3.png?raw=true" alt="A3" width="500"/></li>
+<li><img src="https://github.com/ann-sandra/Insurance-Fraud-Prediction/blob/main/image/A7.png?raw=true" alt="A7" width="500"/> </li>
+<li><code>A2</code>: Right-skewed and normally distributed with values between 10 and 80.</li>
+<li><img src="https://github.com/ann-sandra/Insurance-Fraud-Prediction/blob/main/image/A2.png?raw=true" alt="A7" width="500"/> </li>
+<li><code>A13</code>: Most values are concentrated at 0, with values ranging up to 1000.</li>
+<li><img src="https://github.com/ann-sandra/Insurance-Fraud-Prediction/blob/main/image/A13.png?raw=true" alt="A13" width="500"/> </li>
+<li><code>A12</code>: Nominal attribute with values {1, 2, 3}.</li>
+<li><img src="https://github.com/ann-sandra/Insurance-Fraud-Prediction/blob/main/image/A12.png?raw=true" alt="A12" width="500"/> </li>
+<li><code>A8</code>: Binary attribute with a positive linear relationship with <code>class</code>.  </li>
+<li><strong>Key Insights:</strong>:<ul>
+<li>Strong positive linear relationship between <code>A8</code> and <code>class</code> — applications with <code>A8 = 1</code> tend to get approved.</li>
+<li><img src="https://github.com/ann-sandra/Insurance-Fraud-Prediction/blob/main/image/A8vsclass.png?raw=true" alt="A8 VS Class" width="500"/> </li>
+<li><code>A2</code> and <code>A3</code> show a positive linear relationship.</li>
+<li><img src="https://github.com/ann-sandra/Insurance-Fraud-Prediction/blob/main/image/a2vsa3.png?raw=true" alt="A2 VS A3" width="500"/> </li>
+</ul>
+</li>
+
+</li>
+</ul>
+<hr>
+<h2 id="data-preprocessing"><strong>Data Preprocessing</strong></h2>
+<ol>
+<li><strong>Handling Missing Values</strong>:  <ul>
+<li>Replaced missing values in attributes with the mean using <code>SimpleImputer</code>.  </li>
+</ul>
+</li>
+<li><strong>Feature Scaling</strong>:  <ul>
+<li>Applied <code>StandardScaler</code> to scale numerical columns between 0 and 1.  </li>
+<li>Essential for both SOM and ANN to ensure feature uniformity.  </li>
+</ul>
+</li>
+<li><strong>Outliers</strong>:<ul>
+<li>Outliers were not removed since they are critical for identifying fraudulent patterns.  </li>
+</ul>
+</li>
+<li><strong>Correlation Analysis</strong>:<ul>
+<li>Heatmap highlights a strong correlation between <code>A8</code> and <code>class</code>, making <code>A8</code> a key feature in determining approvals.</li>
+<li><img src="https://github.com/ann-sandra/Insurance-Fraud-Prediction/blob/main/image/correlation.png?raw=true" alt="Correlation" width="500"/> </li>
+</ul>
+</ol>
+<hr>
+<h2 id="model-building"><strong>Model Building</strong></h2>
+<h3 id="-step-1-self-organizing-map-som-"><strong>Step 1: Self-Organizing Map (SOM)</strong></h3>
+<h4 id="som-configuration-">SOM Configuration:</h4>
+<ul>
+<li><strong>Grid Dimensions</strong>: 10 x 10  </li>
+<li><strong>Sigma</strong>: 0.1  </li>
+<li><strong>Learning Rate</strong>: 0.5  </li>
+</ul>
+<h4 id="fraud-detection-">Fraud Detection:</h4>
+<ol>
+<li><strong>Distance Mapping</strong>:  <ul>
+<li>Used <code>som.distance_map()</code> to calculate the mean Euclidean distance of each node to its neighbors.</li>
+<li><img src="https://github.com/ann-sandra/Insurance-Fraud-Prediction/blob/main/image/SOM.png?raw=true" alt="SOM" width="500"/> </li>
+</ul>
+</li>
+<li><strong>Best Matching Unit (BMU)</strong>:  <ul>
+<li>Used <code>som.winner(x)</code> to identify the closest grid cell for each data point.  </li>
+</ul>
+</li>
+<li><strong>Fraud Probability Threshold</strong>:  <ul>
+<li>Set a threshold of 0.8, identifying 37 fraudulent applications.  </li>
+</ul>
+</li>
+<li><strong>Reverse Mapping</strong>:  <ul>
+<li>Reverse-mapped grid blocks to customer IDs for fraud identification.  </li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="-step-2-artificial-neural-network-ann-"><strong>Step 2: Artificial Neural Network (ANN)</strong></h3>
+<ol>
+
+Augmented dataset with the target variable <code>is_fraud</code>, based on SOM predictions.  
+
+  <li><strong>ANN Architecture</strong>:  
+    <ul>
+      <li><strong>Input Layer</strong>: 15 neurons, activation function = ReLU.</li>
+      <li><strong>Hidden Layer</strong>: 7 neurons, activation function = ReLU.</li>
+      <li><strong>Output Layer</strong>: 1 neuron, activation function = Sigmoid.</li>
+    </ul>
+  </li>
+  <li><strong>Hyperparameters</strong>:  
+    <ul>
+      <li>Optimizer: <code>adam</code>.</li>
+      <li>Loss Function: <code>binary_crossentropy</code>.</li>
+      <li>Metrics: <code>accuracy</code>.</li>
+      <li>Batch Size: 1.</li>
+      <li>Epochs: 10.</li>
+    </ul>
+  </li>
+  <li><strong>Results</strong>:  
+    <ul>
+      <li>Final Accuracy: <strong>99.35%</strong>.</li>
+      <li>Final Loss: <strong>0.0482</strong>.</li>
+    </ul>
+  </li>
+</ol>
+
+<hr>
+<h2 id="future-scope"><strong>Future Scope</strong></h2>
+<ol>
+<li><p><strong>Dynamic Fraud Detection</strong>:</p>
+<ul>
+<li>Incorporate real-time detection of fraudulent applications.  </li>
+</ul>
+</li>
+<li><p><strong>Feature Engineering</strong>:</p>
+<ul>
+<li>Explore additional features or external datasets for enhanced accuracy.  </li>
+</ul>
+</li>
+<li><p><strong>Model Optimization</strong>:</p>
+<ul>
+<li>Implement advanced architectures like Convolutional or Recurrent Neural Networks for better feature extraction.  </li>
+</ul>
+</li>
+<li><p><strong>Explainability</strong>:</p>
+<ul>
+<li> Add interpretable models to understand the decision-making process.  </li>
+</ul>
+</li>
+</ol>
+
+<hr>
+<h2 id="how-to-run"><strong>How to Run</strong></h2>
+<h3 id="-pre-requisites-"><strong>Pre-requisites</strong>:</h3>
+<ol>
+<li>Python 3.7+  </li>
+<li>Install required libraries:<pre><code class="lang-bash">pip <span class="hljs-keyword">install </span>numpy pandas <span class="hljs-keyword">scikit-learn </span>matplotlib
+</code></pre>
+</li>
+</ol>
+<hr>
+<h2 id="conclusion"><strong>Conclusion</strong></h2>
+<ul>
+<li>The SOM effectively identified fraudulent applications by clustering anomalies.  </li>
+<li>The ANN further refined the fraud detection process, developing a model achieving a high accuracy of 99.35%.</li>
+<li>This model can be further trained with transfer learning to be applied to niche areas of fraud identification </li>
+</ul>
+
+
 
 
 
@@ -216,26 +437,31 @@ html {
 <!-- Sticky Navigation Bar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
   <div class="container">
-    <a class="navbar-brand" href="index.html#home">Portfolio</a>
+    <a class="navbar-brand" href="#home">Portfolio</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a class="nav-link" href="index.html#home">Home</a>
+          <a class="nav-link" href="#home">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="index.html#about">About</a>
+          <a class="nav-link" href="#about">About</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="index.html#projects">Projects</a>
+          <a class="nav-link" href="#projects">Featured</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#mlprojects">ML Projects</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#dlprojects">DL Projects</a>
         </li>
       </ul>
     </div>
   </div>
 </nav>
-
 
 <!-- Bootstrap JS and dependencies (jQuery and Popper) -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
