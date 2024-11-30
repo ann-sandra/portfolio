@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stress Analysis Modeling</title>
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<style>
+h2,h3,h4 {
+
+font-weight: bold;
+}
+h2 {
+    font-size: 30px;
+}
+h3 {
+    font-size: 23px;
+}
+
+        ul {
+            margin: 10px 20px;
+            padding: 0;
+        }
+        ul li {
+            margin: 5px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: white;
+        }
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        table th {
+            background-color: #f2f2f2;
+        }
+        table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        table tr:hover {
+            background-color: #f1f1f1;
+        }
+        code {
+            background-color: #eef;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: monospace;
+		color: black;
+        }
+        .projects {
+            margin-bottom: 20px;
+        }
+        .projects:last-child {
+            margin-bottom: 0;
+        }
+
+  .about-section {
+    text-align: center;
+    padding: 5px 0;
+  }
+  .about-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+  }
+  .about-section img {
+    width: 200px; /* Adjust the size as needed */
+    height: 200px;
+    border-radius: 50%; /* Makes the image round */
+    margin-bottom: 10px;
+  }
+  .about-section p {
+    color: #333;
+  }
+
+  /* Additional CSS for Projects Section */
+.projects-section h2 {
+  margin-bottom: 40px;
+  font-size: 2.5rem;
+}
+
+.projects-section {
+  margin-bottom: 100px;
+}
+.card {
+  box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Adds a subtle shadow around the card */
+}
+.card-img-top {
+  max-height: 250px; /* Adjust this value to fit the image properly in the card */
+  object-fit: cover; /* This makes sure the image covers the area properly */
+}
+.card-body {
+  padding: 15px;
+}
+.card-title {
+  font-size: 1.25rem;
+}
+.card-text {
+  margin-bottom: 15px;
+}
+
+/* Additional CSS for Skills Section */
+.skills-section h2 {
+  margin-bottom: 40px;
+  font-size: 2.5rem;
+}
+.skills-section .card {
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+.skills-section .card-img-top {
+  padding: 20px; /* Add padding around your images if needed */
+  background-color: #f8f9fa; /* Adjust the background color if your images have transparent areas */
+  height: 180px; /* Fixed height for consistency */
+  object-fit: contain; /* This will make sure the image is scaled properly within the container */
+}
+.skills-section .card-body {
+  padding: 15px;
+}
+.skills-section .card-title {
+  font-size: 1.25rem;
+  margin-bottom: 15px;
+}
+.skills-section .btn-outline-primary {
+  color: #007bff;
+  border-color: #007bff;
+}
+.skills-section .btn-outline-primary:hover {
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+/* Additional CSS for Contact Section */
+.contact-section {
+  padding: 15px 0;
+  text-align: center;
+}
+.contact-section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+}
+.contact-section p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+.social-icon {
+  width: 50px; /* Size of your icons */
+  margin-bottom: 5px;
+}
+/* Hover effect for icons */
+.social-icon:hover {
+  opacity: 0.7;
+}
+/* Style for links in the Contact section */
+.contact-section a {
+  color: #fff;
+  text-decoration: none; /* Removes underline from links */
+  display: inline-block; /* Allows for margin on the bottom */
+  margin-bottom: 10px;
+}
+.contact-section a:hover {
+  color: #ddd; /* Color when hovering over the link */
+}
+
+/* CSS for Sticky Navbar */
+.navbar {
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Adds a shadow for depth */
+}
+
+/* Ensure padding is added to body to avoid content being hidden behind the navbar */
+body { 
+  padding-top: 56px; /* Adjust this value based on the height of your navbar */
+  margin: 0;
+  width: 100%;
+max-width: 100%;
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Style for navigation bar links */
+.navbar-nav .nav-link {
+  color: white;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #f8f9fa; /* Slightly lighter white when hovering over links */
+}
+
+/* Media query for responsive navbar collapsing */
+@media (max-width: 992px) {
+  .navbar-collapse {
+    background-color: #343a40; /* Same as navbar color for seamless look */
+  }
+}
+
+
+
+
+
+/* Hide overlay content by default */
+.project-card .overlay-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Show overlay content on hover */
+.project-card:hover .overlay-content {
+  opacity: 1;
+}
+
+/* Show only the title initially */
+.project-card .card-title {
+  font-size: 1.5rem;
+  color: #fff;
+}
+
+.project-card .card-text,
+.project-card .btn {
+  display: none;
+}
+
+/* Display additional content on hover */
+.project-card:hover .card-text,
+.project-card:hover .btn {
+  display: block;
+}
+
+  .responsive-img {
+    max-width: 100%;
+    height: auto;
+  }
+
+
+
+</style>
+
+</head>
+<body>
+<div class="container-fluid">
+<section class="about-section" style=" padding: 40px 0 10px 0; text-align: center;">
+  <h2 style="color: black; font-weight: bold;">Railway Wheelset Transversal Axle Crack Investigation from Axle-Box Signals</h2>
+</section>
+
+
+
+
+<h2 id="business-problem-statement">Business Problem Statement</h2>
+<p>The task was to identify differences between healthy and defective axle in a wheelset based on velocity and defect severity. Additionally, the goal was to determine if we could distinguish between the presence of a crack and the wear phenomenon of the wheel arising from increasing kilometers traveled. </p>
+<h3 id="wheelset-structure">Wheelset Structure</h3>
+<p><img src="https://github.com/ann-sandra/Axle-Crack-Investigation/blob/main/images/axle.png?raw=true" alt="Axle" width="250"/> </p>
+<h3 id="analytics-problem-statement">Analytics Problem Statement</h3>
+<ol>
+<li><p>Classify axles into two categories:</p>
+<ul>
+<li><strong>Cracked</strong>: Axles with a crack of varying severity.</li>
+<li><strong>Worn Down</strong>: Axles experiencing wear from extended usage.</li>
+</ul>
+</li>
+<li><p>Determine the intensity of wear or crack based on the provided data.</p>
+</li>
+</ol>
+<hr>
+<h2 id="data-description">Data Description</h2>
+<p>The dataset comprised axle-box accelerations recorded during experimental tests on a wheelset installed on the test bench. The wheelset was tested under conditions replicating real-world train operation, including:</p>
+<ul>
+<li>Speeds of <strong>100 km/h</strong>, <strong>200 km/h</strong>, and <strong>300 km/h</strong>.</li>
+<li>Applied loads to simulate running conditions.</li>
+<li>Artificially reproduced axle cracks of increasing severity (<strong>Crack70</strong>, <strong>Crack81</strong>, <strong>Crack91</strong>).</li>
+<li>Data for healthy axles subjected to wear over time (<strong>WearB8</strong>, <strong>WearB4</strong>, <strong>WearB13</strong>).</li>
+</ul>
+<h3 id="key-features">Key Features</h3>
+<ul>
+<li><strong>Defect Type</strong>: Crack or wear (e.g., <code>Crack70</code>, <code>WearB8</code>).</li>
+<li><strong>Dimension</strong>: Crack length.</li>
+<li><strong>Distance</strong>: Distance traveled by the wheelset in kilometers.</li>
+<li><strong>Speed</strong>: Wheelset velocity (100, 200, or 300 km/h).</li>
+<li><strong>Sampling Frequency</strong>: Fixed at 6400 samples/second.</li>
+<li><strong>Vibrational Acceleration</strong>:<ul>
+<li><strong>x_dx</strong>, <strong>y_dx</strong>, <strong>z_dx</strong>: Vibrational acceleration along the x, y, and z axes on the non-defective side.</li>
+<li><strong>x_sx</strong>, <strong>y_sx</strong>, <strong>z_sx</strong>: Vibrational acceleration along the x, y, and z axes on the defective side.</li>
+</ul>
+</li>
+</ul>
+<h3 id="data-structure">Data Structure</h3>
+<p>The dataset files followed the structure:<br><code>&lt;defectname&gt;_&lt;velocity&gt;_&lt;defectlength&gt;-&lt;date&gt;.txt</code>.</p>
+<hr>
+<h2 id="data-preprocessing">Data Preprocessing</h2>
+<ol>
+<li><strong>Duplicate Removal</strong>: Duplicate rows were removed.</li>
+<li><strong>Missing Values</strong>: No missing values were found.</li>
+<li><strong>Feature Dropping</strong>: <ul>
+<li>The sampling frequency column (constant at 6400) was dropped.</li>
+<li>Wheel radius was fixed at <strong>0.00046 m</strong>.</li>
+</ul>
+</li>
+<li><strong>Block Sampling</strong>: <ul>
+<li>The dataset contained approximately <strong>17,280,000 rows per class</strong>, making direct processing computationally intensive.</li>
+<li>To preserve cyclicity, block sampling was performed based on the wheel&#39;s rotation time at <strong>100 km/h</strong>. </li>
+<li><strong>Block Size</strong>: 665 rows represented data collected during one rotation at 100 km/h.</li>
+<li>Final dataset size after sampling: <strong>5,755,273 rows</strong> per class.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="exploratory-data-analysis-eda-">Exploratory Data Analysis (EDA)</h2>
+<ol>
+<li><p><strong>Vibrational Acceleration Analysis</strong>:</p>
+<ul>
+<li>Non-defective side: Highest acceleration along the <strong>z-axis</strong>.</li>
+<li><img src="https://github.com/ann-sandra/Axle-Crack-Investigation/blob/main/images/acceleration.png?raw=true" alt="Acceleration" width="500"/> </li>
+<li>Defective side: Negative acceleration observed along the <strong>y-axis</strong>.</li>
+<li><img src="https://github.com/ann-sandra/Axle-Crack-Investigation/blob/main/images/defacceleration.png?raw=true" alt="Defective Acceleration" width="500"/> </li>
+</ul>
+</li>
+<li><p><strong>FFT of Vibrational Acceleration Frequencies</strong>:</p>
+<ul>
+<li>Fast Fourier Transform (FFT) was used to analyze vibrational acceleration.</li>
+<li><img src="https://github.com/ann-sandra/Axle-Crack-Investigation/blob/main/images/FFT.png?raw=true" alt="FFT" width="1000"/> </li>
+<li>Peaks in the amplitude spectrum provided insights into dominant vibrational patterns.</li>
+</ul>
+</li>
+<li><p><strong>Correlation Analysis</strong>:</p>
+<ul>
+<li><img src="https://github.com/ann-sandra/Axle-Crack-Investigation/blob/main/images/correlation.png?raw=true" alt="Correlation" width="500"/> </li>
+<li>No significant correlations were observed in the heatmap.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="feature-engineering">Feature Engineering</h2>
+<ol>
+<li><p><strong>Block Transformation</strong>:</p>
+<ul>
+<li>For each block (one rotation, size 665), calculated:<ul>
+<li><strong>Minimum</strong>, <strong>maximum</strong>, <strong>average</strong>, and <strong>standard deviation</strong> of vibrational acceleration across x, y, z axes.</li>
+<li><strong>FFT frequency</strong> metrics for each axis.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Result:</strong> Each block of size 665 was reduced to a single row summarizing these statistics, ensuring efficient computation.</p>
+</li>
+</ol>
+<hr>
+<h2 id="model-building">Model Building</h2>
+<h3 id="crack-vs-wear-classification">Crack vs. Wear Classification</h3>
+<ol>
+<li><p><strong>Data Splitting</strong>:</p>
+<ul>
+<li><strong>Training</strong>: 80%</li>
+<li><strong>Testing</strong>: 20%</li>
+</ul>
+</li>
+<li><p><strong>Cross-Validation</strong>:</p>
+<ul>
+<li>Performed with <strong>k=5</strong> (5-fold cross-validation).</li>
+</ul>
+</li>
+<li><p><strong>Model</strong>:</p>
+<ul>
+<li><strong>Decision Tree Classifier</strong>:<ul>
+<li>Achieved <strong>99.99% accuracy</strong> using the feature: <ul>
+<li><code>fft_freq_vibrational_acceleration_dx_x_average</code> (average FFT frequency along the x-axis of the non-defective side across one rotation).</li>
+</ul>
+</li>
+<li><img src="https://github.com/ann-sandra/Axle-Crack-Investigation/blob/main/images/dt.png?raw=true" alt="Decision Tree" width="500" /> </li>
+<li>Threshold: If <code>fft_freq_vibrational_acceleration_dx_x_average &lt; 0.185</code>, it indicated <strong>wear</strong>; otherwise, it indicated <strong>crack</strong>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Insights</strong>:</p>
+<ul>
+<li>Axles with cracks exhibit a higher average FFT frequency (&gt;0.185) than worn axles.</li>
+</ul>
+</li>
+</ol>
+<h3 id="defect-severity-classification">Defect Severity Classification</h3>
+<ol>
+<li><p><strong>Wear Dataset</strong>:</p>
+<ul>
+<li>Decision Tree with pre-pruning <code>min_samples_split=100</code> and <code>min_samples_leaf=100</code>.</li>
+<li>Achieved <strong>96.77% accuracy</strong>.</li>
+<li><img src="https://github.com/ann-sandra/Axle-Crack-Investigation/blob/main/images/dtdefect.png?raw=true" alt="Wear DT" width="500"/> </li>
+<li><p><strong>Important Features:</strong></p>
+<ul>
+<li><p>The following features were identified as the most significant for classifying the severity of wear in the dataset:</p>
+<p><table border="1">
+  <thead>
+    <tr>
+      <th>Feature</th>
+      <th>Importance Score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>z_dx_std_dev</code></td>
+      <td><strong>0.3492</strong></td>
+    </tr>
+    <tr>
+      <td><code>y_dx_std_dev</code></td>
+      <td><strong>0.1646</strong></td>
+    </tr>
+    <tr>
+      <td><code>y_sx_std_dev</code></td>
+      <td><strong>0.1629</strong></td>
+    </tr>
+    <tr>
+      <td><code>Velocity</code></td>
+      <td><strong>0.1358</strong></td>
+    </tr>
+    <tr>
+      <td><code>x_sx_std_dev</code></td>
+      <td><strong>0.1153</strong></td>
+    </tr>
+  </tbody>
+</table>
+</p>
+</li>
+<li><img src="https://github.com/ann-sandra/Axle-Crack-Investigation/blob/main/images/featuredefect.png?raw=true" alt="Features of wear DT" width="500"/> </li>
+</ul>
+</li>
+</ul>
+</li>
+
+<li><p><strong>Crack Dataset</strong>:</p>
+<ul>
+<li>Decision Tree with pre-pruning <code>min_samples_split=100</code> and <code>min_samples_leaf=100</code>.</li>
+<li>Achieved <strong>70.07% accuracy</strong>.</li>
+<li><img src="https://github.com/ann-sandra/Axle-Crack-Investigation/blob/main/images/dtcrack.png?raw=true" alt="Crack DT" width="500"/> </li>
+<li><p>The following features were identified as the most significant for classifying the severity of cracks in the dataset:</p>
+<p><table border="1">
+  <thead>
+    <tr>
+      <th>Feature</th>
+      <th>Importance Score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>x_sx_std_dev</code></td>
+      <td><strong>0.5429</strong></td>
+    </tr>
+    <tr>
+      <td><code>y_sx_std_dev</code></td>
+      <td><strong>0.3383</strong></td>
+    </tr>
+    <tr>
+      <td><code>z_sx_std_dev</code></td>
+      <td><strong>0.0946</strong></td>
+    </tr>
+    <tr>
+      <td><code>x_dx_std_dev</code></td>
+      <td><strong>0.0233</strong></td>
+    </tr>
+    <tr>
+      <td><code>z_dx_std_dev</code></td>
+      <td><strong>0.0009</strong></td>
+    </tr>
+  </tbody>
+</table>
+</p>
+</li>
+<li><p><img src="https://github.com/ann-sandra/Axle-Crack-Investigation/blob/main/images/featurecrack.png?raw=true" alt="Features of crack DT" width="500" /> </p>
+</li>
+<li><p><strong>Challenges:</strong></p>
+<ul>
+<li>Overlaps in characteristics between crack severity classes (e.g., <strong>Crack70</strong>, <strong>Crack81</strong>, <strong>Crack91</strong>) reduced accuracy.</li>
+<li>Variability due to different states of <strong>compression</strong> and <strong>traction</strong>.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="results">Results</h2>
+<ul>
+<li><strong>Crack vs. Wear Classification</strong>: Achieved 99% accuracy.</li>
+<li><strong>Defect Severity Classification</strong>:<ul>
+<li>Wear: 96.77% accuracy.</li>
+<li>Crack: 70.07% accuracy.</li>
+</ul>
+</li>
+<li>Key Insight: Axles with cracks exhibit higher vibrational acceleration and FFT frequency compared to worn axles.</li>
+</ul>
+<hr>
+<h2 id="how-to-run">How to Run</h2>
+<h4 id="-pre-requisites-">Pre-requisites:</h4>
+<ol>
+<li><p>Install required libraries:</p><pre><code class="lang-bash">pip <span class="hljs-keyword">install </span>numpy pandas <span class="hljs-keyword">scikit-learn matplotlib </span>
+</code></pre></li>
+</ol>
+<hr>
+<h2 id="future-scope">Future Scope</h2>
+<ol>
+<li>Extend the analysis to incorporate the <strong>crack breathing mechanism</strong>, which models the states of compression and traction. </li>
+<li>This could improve classification accuracy between different crack severities by accounting for additional physical phenomena.</li>
+</ol>
+
+</div>
+
+
+
+
+
+<!-- Sticky Navigation Bar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="#home">Portfolio</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html#home">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="index.html#about">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="index.html#projects">Featured</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="index.html#mlprojects">ML Projects</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="index.html#dlprojects">DL Projects</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Bootstrap JS and dependencies (jQuery and Popper) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.9.5/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
