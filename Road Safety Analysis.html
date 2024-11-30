@@ -8,6 +8,60 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
 <style>
+h2,h3,h4 {
+
+font-weight: bold;
+}
+h2 {
+    font-size: 30px;
+}
+h3 {
+    font-size: 23px;
+}
+h4 {
+    font-size: 20px;
+}
+        ul {
+            margin: 10px 20px;
+            padding: 0;
+        }
+        ul li {
+            margin: 5px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: white;
+        }
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        table th {
+            background-color: #f2f2f2;
+        }
+        table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        table tr:hover {
+            background-color: #f1f1f1;
+        }
+        code {
+            background-color: #eef;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: monospace;
+		color: black;
+        }
+        .projects {
+            margin-bottom: 20px;
+        }
+        .projects:last-child {
+            margin-bottom: 0;
+        }
+
   .about-section {
     text-align: center;
     padding: 5px 0;
@@ -196,19 +250,315 @@ html {
 </head>
 <body>
 
-<section class="about-section" style=" padding: 100px 0 50px 0; text-align: center;">
+<section class="about-section" style=" padding: 40px 0 10px 0; text-align: center;">
   <h2 style="color: black; font-weight: bold;">Road Safety Analysis</h2>
 </section>
 
-<section id='about' class="about-section" >
-  <div class="container-fluid">
-      <div class="col-md-12">
-    <h5 style="margin-top: 3rem; padding-left: 15px; text-align: left;"><b>Objective </b></h5>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sit amet dolor dolor. Suspendisse ligula elit, hendrerit ut bibendum quis, facilisis vitae est. Vivamus vitae felis sit amet sem rhoncus euismod. Praesent commodo lorem porttitor. Nam in condimentum ex. Nam accumsan nisi turpis, sed tempus dolor volutpat non. Proin id enim feugiat ipsum consectetur mattis. Nam blandit venenatis nisi, convallis imperdiet nisi condimentum at.</p>
-    <p>Duis convallis ligula sed pretium tristique. Duis nunc risus, lacinia eget cursus id, suscipit ac metus. Sed varius sed tortor congue aliquam. In in dapibus diam, in auctor purus. Praesent vitae tristique diam. Donec tincidunt hendrerit tortor, vitae lobortis purus rutrum sit amet. Nunc non arcu vitae leo rhoncus tincidunt vel sed urna. Sed sed efficitur dui. Morbi id velit nisi. Fusce luctus placerat purus eu cursus.</p>
-    <p>Duis convallis ligula sed pretium tristique. Duis nunc risus, lacinia eget cursus id, suscipit ac metus. Sed varius sed tortor congue aliquam. In in dapibus diam, in auctor purus. Praesent vitae tristique diam. Donec tincidunt hendrerit tortor, vitae lobortis purus rutrum sit amet. Nunc non arcu vitae leo rhoncus tincidunt vel sed urna. Sed sed efficitur dui. Morbi id velit nisi. Fusce luctus placerat purus eu cursus.</p>
-  </div>
-</section>
+
+<div>
+<p>This project aims to <strong>identify the severity of road accidents</strong> based on given crash data in Queensland, Australia. By analyzing the data, we strive to <strong>minimize accident rates</strong> and <strong>maximize public safety</strong> by providing insights and actionable recommendations.</p>
+<hr>
+<h2 id="project-overview">Project Overview</h2>
+<ul>
+<li><strong>Target Variable</strong>: <code>Crash_Severity</code> (categorical).</li>
+<li><strong>Objective</strong>: Analyze crash data to predict accident severity, identify patterns, and derive actionable insights for improving public safety.</li>
+</ul>
+<hr>
+<h2 id="dataset-description">Dataset Description</h2>
+<p><strong>Dataset</strong>: <code>crash_data_queensland_1_crash_locations.csv</code> </p>
+<p>The dataset provides detailed information on road accidents in Queensland. Below is the structure of the dataset:</p>
+<table>
+<thead>
+<tr>
+<th><strong>Column Name</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Crash_Ref_Number</code></td>
+<td>Unique identifier for each crash.</td>
+</tr>
+<tr>
+<td><code>Crash_Severity</code></td>
+<td>The severity of the crash (target variable). Categories include: <code>Minor injury</code>, <code>Fatal</code>, <code>Property damage only</code>, <code>Hospitalisation</code>, <code>Medical treatment</code>.</td>
+</tr>
+<tr>
+<td><code>Crash_Year</code></td>
+<td>Year of the crash.</td>
+</tr>
+<tr>
+<td><code>Crash_Month</code></td>
+<td>Month of the crash.</td>
+</tr>
+<tr>
+<td><code>Crash_Day_Of_Week</code></td>
+<td>Day of the week when the crash occurred.</td>
+</tr>
+<tr>
+<td><code>Crash_Hour</code></td>
+<td>Hour of the day when the crash occurred.</td>
+</tr>
+<tr>
+<td><code>Crash_Nature</code></td>
+<td>Nature of the crash (e.g., <code>Angle</code>, <code>Rear-end</code>).</td>
+</tr>
+<tr>
+<td><code>Crash_Type</code></td>
+<td>Type of crash (e.g., single-vehicle, multi-vehicle).</td>
+</tr>
+<tr>
+<td><code>Crash_Latitude</code> and <code>Longitude</code></td>
+<td>Geographical location of the crash.</td>
+</tr>
+<tr>
+<td><code>Crash_Street</code></td>
+<td>Name of the street where the crash occurred.</td>
+</tr>
+<tr>
+<td><code>Crash_Speed_Limit</code></td>
+<td>Speed limit in the area of the crash.</td>
+</tr>
+<tr>
+<td><code>Crash_Road_Surface_Condition</code></td>
+<td>Surface condition of the road at the time of the crash.</td>
+</tr>
+<tr>
+<td><code>Crash_Atmospheric_Condition</code></td>
+<td>Weather conditions during the crash.</td>
+</tr>
+<tr>
+<td><code>Count_Casualty_*</code></td>
+<td>Number of casualties in different severity categories (e.g., fatalities, hospitalizations).</td>
+</tr>
+<tr>
+<td><code>Count_Unit_*</code></td>
+<td>Number of vehicles and pedestrians involved.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="tools-and-libraries">Tools and Libraries</h2>
+<ul>
+<li><strong>Libraries</strong>: <code>pandas</code>, <code>numpy</code>, <code>matplotlib</code>, <code>sweetviz</code>.  </li>
+<li><strong>Visualization</strong>: Heatmaps, histograms, pie charts, and bar graphs.  </li>
+<li><strong>Modeling</strong>: Logistic Regression, KNN, Decision Tree, Random Forest.  </li>
+</ul>
+<hr>
+<h2 id="exploratory-data-analysis-eda-">Exploratory Data Analysis (EDA)</h2>
+<p>EDA was conducted using <strong><code>pandas</code></strong>, <strong><code>matplotlib</code></strong>, and <strong><code>sweetviz</code></strong>. Key findings include:</p>
+<h3 id="summary-statistics">Summary Statistics</h3>
+<ol>
+<li><strong>Total Accidents</strong>: 374,214  </li>
+<li><strong>Total Injuries</strong>: 287,678  </li>
+<li><strong>Property Damage Only</strong>: 86,536 cases<br><strong>Sweetviz Analysis</strong>: Comprehensive visual report of the dataset is stored in <a href="./EDA.html"><strong>EDA.html</strong></a>.  </li>
+</ol>
+<hr>
+<h3 id="insights-from-eda">Insights from EDA</h3>
+<h4 id="crash-severity-distribution">Crash Severity Distribution</h4>
+<ul>
+<li>Most crashes resulted in <strong>medical treatment</strong> or <strong>hospitalization</strong>.</li>
+<li><img src="https://github.com/ann-sandra/Road-Safety-Analysis/blob/main/image/crashsev.png?raw=true" alt="Crash severity" width="500"/>  </li>
+<li>Fatalities accounted for only <strong>0.901%</strong> of crashes.  </li>
+<li><img src="https://github.com/ann-sandra/Road-Safety-Analysis/blob/main/image/piecrashsev.png?raw=true" alt="Crash severity" width="500"/> </li>
+</ul>
+<h4 id="year-wise-accident-trends">Year-wise Accident Trends</h4>
+<ul>
+<li>Accident rates declined in recent years.  </li>
+<li>The highest accident rates occurred between <strong>2000 and 2010</strong>, averaging 22,508 accidents annually.  </li>
+<li><img src="https://github.com/ann-sandra/Road-Safety-Analysis/blob/main/image/yearwise.png?raw=true" alt="Yearwise trend" width="500"/> </li>
+</ul>
+<h4 id="time-distribution">Time Distribution</h4>
+<ul>
+<li>Accidents occurred evenly across months.</li>
+<li><img src="https://github.com/ann-sandra/Road-Safety-Analysis/blob/main/image/month.png?raw=true" alt="Monthwise trend" width="500"/>  </li>
+<li>The majority of accidents occurred between <strong>3 PM and 5 PM</strong>, averaging <strong>30,330 accidents</strong>.  </li>
+<li><img src="https://github.com/ann-sandra/Road-Safety-Analysis/blob/main/image/hour.png?raw=true" alt="Hourwise Crash" width="500"/> </li>
+</ul>
+<h4 id="street-wise-accident-distribution">Street-wise Accident Distribution</h4>
+<ul>
+<li><strong>Top Streets</strong>: Bruce Highway (highest), Gold Coast Hwy (second highest).  </li>
+<li>Focus should be on improving safety measures on these high-risk roads.</li>
+<li><img src="https://github.com/ann-sandra/Road-Safety-Analysis/blob/main/image/street.png?raw=true" alt="Streetwise Crash" width="500"/> </li>
+</ul>
+<h4 id="nature-of-crashes">Nature of Crashes</h4>
+<ul>
+<li><strong>Top Three Crash Natures</strong>:  <ul>
+<li><strong>Angle Accidents</strong>: 111,049 cases.</li>
+<li>When two vehicles collide at an angle, often at intersections.</li>
+<li><strong>Rear-End Collisions</strong>: 92,892 cases.</li>
+<li>When a vehicle collides with the rear of another vehicle. </li>
+<li><strong>Hit Object</strong>: 81,644 cases.</li>
+<li>When a vehicle collides with a stationary object, such as a barrier, pole, or tree.</li>
+</ul>
+</li>
+<li><img src="https://github.com/ann-sandra/Road-Safety-Analysis/blob/main/image/nature.png?raw=true" alt="Nature of Crash" width="500"/></li>
+</ul>
+<h4 id="crash-types">Crash Types</h4>
+<ul>
+<li>Most of the crashes occurred are multi-vehicle with total pedestrian accidents at 16,635.</li>
+<li><img src="https://github.com/ann-sandra/Road-Safety-Analysis/blob/main/image/type.png?raw=true" alt="Crash type" width="500"/>  </li>
+</ul>
+<h4 id="lighting-and-weather-conditions">Lighting and Weather Conditions</h4>
+<ul>
+<li>Most accidents occurred during the day under clear weather conditions.  </li>
+<li><img src="https://github.com/ann-sandra/Road-Safety-Analysis/blob/main/image/lighting.png?raw=true" alt="Lighting Crash" width="500"/></li>
+<li>Therefore, visibility or weather has not been the main cause for accidents</li>
+</ul>
+<h4 id="speed-limit-impact">Speed Limit Impact</h4>
+<ul>
+<li>Majority of crashes occurred at a speed limit of <strong>60 km/h</strong>.</li>
+<li><img src="https://github.com/ann-sandra/Road-Safety-Analysis/blob/main/image/speedlimit.png?raw=true" alt="Speedlimit" width="500"/></li>
+<li>Lower speedlimits resulted in lesser number of accidents</li>
+</ul>
+<h4 id="roadway-feature-impact">Roadway feature Impact</h4>
+<ul>
+<li>Majority of crashes occurred at <strong>Intersections</strong>.</li>
+<li><img src="https://github.com/ann-sandra/Road-Safety-Analysis/blob/main/image/road.png?raw=true" alt="Roadway feature" width="500"/></li>
+<li>More rules should be imposed on intersections, to prevent crashes and ensure safe transportation</li>
+<li>A detailed examination of intersection with crash severity shows that medical treatment has the highest count in intersection and  hospitalisation is next.</li>
+<li><img src="https://github.com/ann-sandra/Road-Safety-Analysis/blob/main/image/crashsevroadway.png?raw=true" alt="Crash Severity Roadway feature" width="800"/></li>
+</ul>
+<h4 id="lockdown-impact-analysis">Lockdown Impact Analysis</h4>
+<ul>
+<li>Analyzed crashes during the lockdown period (2020-01-01 to 2021-04-01).  </li>
+<li><strong>Findings</strong>: Significant reduction in both accident frequency and severity during the lockdown compared to pre- and post-lockdown periods.  </li>
+<li><img src="https://github.com/ann-sandra/Road-Safety-Analysis/blob/main/image/lockdown.png?raw=true" alt="Lockdown feature" width="800"/></li>
+</ul>
+<h4 id="spatial-characteristics">Spatial Characteristics</h4>
+<ul>
+<li>A <strong>heatmap</strong> was created to analyze the spatial distribution of accidents based on latitude and longitude.</li>
+<li><img src="https://github.com/ann-sandra/Road-Safety-Analysis/blob/main/image/spatheatmap.png?raw=true" alt="Spatial heat map" width="500"/></li>
+<li>Most of the crashes occur along the coast</li>
+</ul>
+<h4 id="pedestrian-crashes">Pedestrian Crashes</h4>
+<ul>
+<li>Analyzed crashes involving pedestrians by roadway features, time, and age groups.</li>
+<li><strong>Distribution of Pedestrian crashes based on Roadway features</strong></li>
+<li><img src="https://github.com/ann-sandra/Road-Safety-Analysis/blob/main/image/roadwayfeature.png?raw=true" alt="Roadway feature" width="500"/></li>
+<li>Most of the pedestrian crashes occur at intersections, suggesting a stringent road crossing rule to be implemented.</li>
+<li><strong>Distribution of Pedestrian crashes by hour</strong></li>
+<li><img src="https://github.com/ann-sandra/Road-Safety-Analysis/blob/main/image/pedcrash.png?raw=true" alt="Pedestrian crash" width="500"/></li>
+<li>Most of the pedestrian crashes occur around 3PM</li>
+<li><strong>Distribution of Pedestrian crashes by age</strong></li>
+<li><img src="https://github.com/ann-sandra/Road-Safety-Analysis/blob/main/image/pedage.png?raw=true" alt="Pedestrian crash" width="500"/></li>
+<li>The pedestrian crashes decrease with age, with 0-16 having the most crashes and 75+ the least</li>
+<li>Suggested measures include enhancing street lighting, increasing pedestrian safety education, and implementing traffic calming measures for road crossing.  </li>
+</ul>
+<hr>
+<h2 id="data-preprocessing">Data Preprocessing</h2>
+<h3 id="handling-missing-values">Handling Missing Values</h3>
+<ul>
+<li>Missing values were replaced using the <strong>KNN Imputer</strong>.</li>
+</ul>
+<h3 id="feature-selection">Feature Selection</h3>
+<ul>
+<li>Dropped columns with:<ul>
+<li><strong>Low Correlation</strong> (&lt; 0.15) with the target variable.  </li>
+<li><strong>High Variance Inflation Factor (VIF)</strong> (&gt; 5).</li>
+<li><code>Crash_Year</code>, <code>Crash_Hour</code>, <code>Count_Casualty_Fatality</code>, <code>Count_Unit_Motorcycle_Moped</code>, <code>Count_Unit_Truck</code>, <code>Count_Unit_Bus</code>, <code>Count_Unit_Bicycle</code>, <code>Count_Unit_Other</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="dimensionality-reduction">Dimensionality Reduction</h3>
+<ul>
+<li>Heatmap was drawn and high correlation was found between (<code>Count_Casualty_Total</code> and <code>Count_Casualty_MedicallyTreated</code>) and (<code>Crash_Latitude</code> and <code>Crash_Longitude</code>)</li>
+<li>These columns were combined using <strong>PCA</strong>.</li>
+<li><img src="https://github.com/ann-sandra/Road-Safety-Analysis/blob/main/image/corr.png?raw=true" alt="Correlation matrix" width="500"/></li>
+</ul>
+<h3 id="label-encoding">Label Encoding</h3>
+<ul>
+<li>Categorical columns were encoded using <strong>LabelEncoder</strong>.</li>
+</ul>
+<h3 id="feature-scaling">Feature Scaling</h3>
+<ul>
+<li>Numerical columns were scaled between 0 and 1 using a <strong>Standard Scaler</strong>.</li>
+</ul>
+<hr>
+<h2 id="model-building">Model Building</h2>
+<h3 id="data-splitting">Data Splitting</h3>
+<ul>
+<li><strong>Training Set</strong>: 60%  </li>
+<li><strong>Validation Set</strong>: 20%  </li>
+<li><strong>Test Set</strong>: 20%  </li>
+</ul>
+<h3 id="models">Models</h3>
+<h4 id="logistic-regression">Logistic Regression</h4>
+<ul>
+<li><strong>Test Accuracy</strong>: 99.98%</li>
+<li>We cannot induce the logic behind the model for classification, so we try KNN</li>
+</ul>
+<h4 id="k-nearest-neighbors-knn-">K-Nearest Neighbors (KNN)</h4>
+<ul>
+<li>Used the <strong>elbow method</strong> to determine the optimal value of <code>k</code>.</li>
+<li><img src="https://github.com/ann-sandra/Road-Safety-Analysis/blob/main/image/knnelbow.png?raw=true" alt="Elbow method" width="500"/></li>
+<li>The accuracy flatlines after 0.8 with k = 20</li>
+<li><strong>Test Accuracy</strong>: 80% at <code>k=20</code>.</li>
+<li>The learning curve of the KNN model with training and test data is drawn</li>
+<li><img src="https://github.com/ann-sandra/Road-Safety-Analysis/blob/main/image/knnlearcurve.png?raw=true" alt="KNN learning curve" width="500"/></li>
+<li>The accuracy of the model does not improve beyond .82 after k=20</li>
+<li>Observations: KNN is sensitive to noise, and crash data is inherently noisy, limiting its performance.</li>
+</ul>
+<h4 id="decision-tree">Decision Tree</h4>
+<ul>
+<li><strong>Parameters</strong>: <code>max_depth=10</code> <code>criterion=gini</code> <code>minimum samples to split=300</code> <code>minimum samples in leaf=100</code> <code>alpha=.0026</code></li>
+<li><strong>Validation Accuracy</strong>: 99.19%  </li>
+<li><strong>Feature Importance</strong>: Visualized feature contributions to the model.</li>
+<li><img src="https://github.com/ann-sandra/Road-Safety-Analysis/blob/main/image/featureimp.png?raw=true" alt="Feature Importance" width="500"/></li>
+<li>Conducted <strong>hyperparameter tuning</strong> to find the optimal <strong>ccp_alpha</strong> value:<ul>
+<li>The various parameters are modelled to observe the changes in impurity and size of the tree with alpha to identify the ideal alpha to prune the decision tree</li>
+<li><strong>Gini impurity VS Alpha</strong></li>
+<li><img src="https://github.com/ann-sandra/Road-Safety-Analysis/blob/main/image/impvsalpha.png?raw=true" alt="Impurity VS alpha" width="500"/></li>
+<li><strong>Tree size VS Alpha</strong></li>
+<li><img src="https://github.com/ann-sandra/Road-Safety-Analysis/blob/main/image/vsalpha.png?raw=true" alt="Tree size VS alpha" width="500"/></li>
+<li><strong>Accuracy VS Alpha</strong></li>
+<li><img src="https://github.com/ann-sandra/Road-Safety-Analysis/blob/main/image/accvsalpha.png?raw=true" alt="Accuracy VS alpha" width="500"/></li>
+<li>The accuracy does not differ significantly between training and test sets meaning the model has generalised well.</li>
+<li>Selected <strong>alpha = 0.0026</strong> for the best trade-off between bias and variance and minimal difference in accuracy between training and test dataset</li>
+<li><strong>The final decision tree</strong>:</li>
+<li><img src="https://github.com/ann-sandra/Road-Safety-Analysis/blob/main/image/dt.png?raw=true" alt="Decision tree" width="500"/></li>
+</ul>
+</li>
+</ul>
+<h4 id="random-forest">Random Forest</h4>
+<ul>
+<li><strong>Parameters</strong>: <code>max_depth=10</code> <code>criterion=gini</code> <code>minimum samples to split=300</code> <code>minimum samples in leaf=100</code></li>
+<li><strong>Validation Accuracy</strong>: 97.61%  </li>
+</ul>
+<hr>
+<h3 id="model-selection">Model Selection</h3>
+<p>The <strong>Decision Tree</strong> was selected as the final model due to its high accuracy and ability to generalize well to unseen data.</p>
+<hr>
+<h2 id="how-to-run">How to Run</h2>
+<h3 id="-pre-requisites-">Pre-requisites:</h3>
+<ol>
+<li>Install the required libraries:
+```bash
+pip install pandas numpy matplotlib sklearn sweetviz</li>
+</ol>
+<hr>
+<h2 id="conclusions">Conclusions</h2>
+<ol>
+<li><p><strong>Key Observations</strong>:</p>
+<ul>
+<li>Medical treatment and hospitalization are the most common crash outcomes.  </li>
+<li>Accidents are more frequent at <strong>intersections</strong> and during <strong>afternoon hours</strong>.  </li>
+<li>High-risk streets and suburbs were identified for targeted interventions.  </li>
+</ul>
+</li>
+<li><p><strong>Recommendations</strong>:</p>
+<ul>
+<li>Install traffic calming measures and traffic police in high-risk areas.</li>
+<li>Improve the road traffic flow at intersections with better infrastructures to avoid crashes </li>
+<li>Focus safety campaigns on peak accident times and locations.  </li>
+<li>Improve pedestrian safety through better infrastructure and education to young people.  </li>
+</ul>
+</li>
+</ol>
+<p>This comprehensive analysis provides valuable insights into road safety, helping authorities prioritize areas for intervention and policy-making.</p>
+
+</div>
+
 
 
 
@@ -216,7 +566,7 @@ html {
 <!-- Sticky Navigation Bar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
   <div class="container">
-    <a class="navbar-brand" href="index.html#home">Portfolio</a>
+    <a class="navbar-brand" href="#home">Portfolio</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -229,13 +579,18 @@ html {
           <a class="nav-link" href="index.html#about">About</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="index.html#projects">Projects</a>
+          <a class="nav-link" href="index.html#projects">Featured</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="index.html#mlprojects">ML Projects</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="index.html#dlprojects">DL Projects</a>
         </li>
       </ul>
     </div>
   </div>
 </nav>
-
 
 <!-- Bootstrap JS and dependencies (jQuery and Popper) -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
