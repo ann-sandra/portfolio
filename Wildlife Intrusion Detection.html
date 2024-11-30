@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wildlife Intrusion Detection - Elephant Alert System</title>
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<style>
+
+h2 {
+    font-size: 30px;
+}
+h3 {
+    font-size: 23px;
+}
+h4 {
+    font-size: 20px;
+}
+
+        ul {
+            margin: 10px 20px;
+            padding: 0;
+        }
+        ul li {
+            margin: 5px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: white;
+        }
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        table th {
+            background-color: #f2f2f2;
+        }
+        table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        table tr:hover {
+            background-color: #f1f1f1;
+        }
+        code {
+            background-color: #eef;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: monospace;
+		color: black;
+        }
+        .projects {
+            margin-bottom: 20px;
+        }
+        .projects:last-child {
+            margin-bottom: 0;
+        }
+
+  .about-section {
+    text-align: center;
+    padding: 5px 0;
+  }
+  .about-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+  }
+  .about-section img {
+    width: 200px; /* Adjust the size as needed */
+    height: 200px;
+    border-radius: 50%; /* Makes the image round */
+    margin-bottom: 10px;
+  }
+  .about-section p {
+    color: #333;
+  }
+
+  /* Additional CSS for Projects Section */
+.projects-section h2 {
+  margin-bottom: 40px;
+  font-size: 2.5rem;
+}
+
+.projects-section {
+  margin-bottom: 100px;
+}
+.card {
+  box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Adds a subtle shadow around the card */
+}
+.card-img-top {
+  max-height: 250px; /* Adjust this value to fit the image properly in the card */
+  object-fit: cover; /* This makes sure the image covers the area properly */
+}
+.card-body {
+  padding: 15px;
+}
+.card-title {
+  font-size: 1.25rem;
+}
+.card-text {
+  margin-bottom: 15px;
+}
+
+/* Additional CSS for Skills Section */
+.skills-section h2 {
+  margin-bottom: 40px;
+  font-size: 2.5rem;
+}
+.skills-section .card {
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+.skills-section .card-img-top {
+  padding: 20px; /* Add padding around your images if needed */
+  background-color: #f8f9fa; /* Adjust the background color if your images have transparent areas */
+  height: 180px; /* Fixed height for consistency */
+  object-fit: contain; /* This will make sure the image is scaled properly within the container */
+}
+.skills-section .card-body {
+  padding: 15px;
+}
+.skills-section .card-title {
+  font-size: 1.25rem;
+  margin-bottom: 15px;
+}
+.skills-section .btn-outline-primary {
+  color: #007bff;
+  border-color: #007bff;
+}
+.skills-section .btn-outline-primary:hover {
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+/* Additional CSS for Contact Section */
+.contact-section {
+  padding: 15px 0;
+  text-align: center;
+}
+.contact-section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+}
+.contact-section p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+.social-icon {
+  width: 50px; /* Size of your icons */
+  margin-bottom: 5px;
+}
+/* Hover effect for icons */
+.social-icon:hover {
+  opacity: 0.7;
+}
+/* Style for links in the Contact section */
+.contact-section a {
+  color: #fff;
+  text-decoration: none; /* Removes underline from links */
+  display: inline-block; /* Allows for margin on the bottom */
+  margin-bottom: 10px;
+}
+.contact-section a:hover {
+  color: #ddd; /* Color when hovering over the link */
+}
+
+/* CSS for Sticky Navbar */
+.navbar {
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Adds a shadow for depth */
+}
+
+/* Ensure padding is added to body to avoid content being hidden behind the navbar */
+body { 
+  padding-top: 56px; /* Adjust this value based on the height of your navbar */
+  margin: 0;
+  width: 100%;
+max-width: 100%;
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Style for navigation bar links */
+.navbar-nav .nav-link {
+  color: white;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #f8f9fa; /* Slightly lighter white when hovering over links */
+}
+
+/* Media query for responsive navbar collapsing */
+@media (max-width: 992px) {
+  .navbar-collapse {
+    background-color: #343a40; /* Same as navbar color for seamless look */
+  }
+}
+
+
+
+
+
+/* Hide overlay content by default */
+.project-card .overlay-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Show overlay content on hover */
+.project-card:hover .overlay-content {
+  opacity: 1;
+}
+
+/* Show only the title initially */
+.project-card .card-title {
+  font-size: 1.5rem;
+  color: #fff;
+}
+
+.project-card .card-text,
+.project-card .btn {
+  display: none;
+}
+
+/* Display additional content on hover */
+.project-card:hover .card-text,
+.project-card:hover .btn {
+  display: block;
+}
+
+  .responsive-img {
+    max-width: 100%;
+    height: auto;
+  }
+
+
+
+</style>
+
+</head>
+<body>
+<div class="container-fluid">
+<section class="about-section" style=" padding: 40px 0 10px 0; text-align: center;">
+  <h2 style="color: black; font-weight: bold;">Wildlife Intrusion Detection - Elephant Alert System</h2>
+</section>
+
+
+<h2 id="-introduction-"><strong>Introduction</strong></h2>
+<p>Elephant populations are increasingly encroaching into human habitats in India due to dwindling natural resources like food and water, resulting in severe human-elephant conflicts. To address this issue, this project implements an automated elephant detection system using image processing techniques on a Raspberry Pi. By integrating feature detection methods with a Convolutional Neural Network (CNN), the project provides a scalable, low-cost solution for real-time monitoring of elephants at forest borders.</p>
+<p>The system&#39;s primary goal is to detect elephants accurately and trigger necessary alerts to prevent conflicts, thus preserving both human safety and wildlife.</p>
+<br>
+<h3 id="-project-objectives-"><strong>Project Objectives</strong></h3>
+<ol>
+<li>To detect elephants at forest borders using Raspberry Pi.</li>
+<li>To integrate multiple feature detection techniques and evaluate their effectiveness.</li>
+<li>To develop a robust machine learning model (CNN) for real-time image classification.</li>
+<li>To implement a low-power edge computing system for easy deployment.</li>
+<li>To evaluate and compare the performance of different feature extraction methods (SIFT, SURF, HOG, ORB).</li>
+</ol>
+<br>
+<h3 id="-key-features-"><strong>Key Features</strong></h3>
+<ul>
+<li><strong>Real-time Detection:</strong> Efficient edge computing for real-time monitoring and predictions.</li>
+<li><strong>Feature Detection Techniques:</strong> Comparative analysis of SIFT, SURF, HOG, and ORB.</li>
+<li><strong>Energy-Efficient Deployment:</strong> Low power consumption using Raspberry Pi.</li>
+<li><strong>Scalable and Cost-Effective:</strong> Ideal for deployment in remote areas with limited resources.</li>
+</ul>
+<hr>
+<h2 id="-dataset-"><strong>Dataset</strong></h2>
+<p>The dataset contains images categorized into two classes:</p>
+<ul>
+<li><strong>Elephant:</strong> Images of elephants captured from open-source repositories.</li>
+<li><strong>Other:</strong> Images of non-elephant objects or backgrounds for model training.</li>
+</ul>
+<h3 id="-dataset-structure-"><strong>Dataset Structure</strong></h3>
+<pre><code class="lang-plaintext">dataset/
+│
+├── <span class="hljs-keyword">input</span>/
+    ├── images/
+        ├── elephant/
+        └── other/
+</code></pre>
+<h3 id="-input-directories-"><strong>Input Directories</strong></h3>
+<ul>
+<li><code>input/images/elephant</code>: Contains elephant images.</li>
+<li><code>input/images/other</code>: Contains non-elephant images.</li>
+</ul>
+<hr>
+<h2 id="-software-requirements-"><strong>Requirements</strong></h2>
+<h4 id="-software-requirements-"><strong>Software Requirements</strong></h4>
+<ul>
+<li><strong>Operating System:</strong> Raspbian  </li>
+<li><strong>IDE:</strong> Thonny  </li>
+<li><strong>Machine Learning Framework:</strong> TensorFlow (1.14.0), Keras-preprocessing (1.1.0)  </li>
+<li><strong>Preprocessing Module:</strong> OpenCV  </li>
+</ul>
+<br>
+<h4 id="-hardware-requirements-"><strong>Hardware Requirements</strong></h4>
+<ul>
+<li><strong>Device:</strong> Raspberry Pi 4 Model B</li>
+<li><strong>Camera Module:</strong> Raspberry Pi Camera Module v2</li>
+<li><strong>Power Supply:</strong> 5V, 3A power adapter</li>
+<li><strong>Storage:</strong> Minimum 32GB SD card for datasets and model storage</li>
+</ul>
+<hr>
+<h2 id="-data-preprocessing-"><strong>Data Preprocessing</strong></h2>
+<ol>
+<li><strong>Image Loading:</strong> <ul>
+<li>Images are read and converted to grayscale for feature detection.</li>
+</ul>
+</li>
+<li><strong>Feature Scaling:</strong> <ul>
+<li>Pixel values are normalized by dividing by 255 to scale them to a range of [0, 1].</li>
+</ul>
+</li>
+<li><strong>Data Augmentation:</strong> <ul>
+<li>Techniques like flipping, rotation, and cropping are applied to expand the dataset.</li>
+</ul>
+</li>
+</ol>
+<hbr>
+<h3 id="-utility-functions-"><strong>Utility Functions</strong></h3>
+<ol>
+<li><strong><code>load_base(fn)</code></strong>: Loads the dataset from the specified folder.</li>
+<li><strong><code>get_images(mypath, hogVal, x, y)</code></strong>: Reads and prepares grayscale images for training.</li>
+<li><strong><code>draw_rect(image)</code></strong>: Draws bounding boxes around detected features for visualization.</li>
+<li><strong><code>writeToFile(fd, file, txt)</code></strong>: Logs detection results to a file for further processing.</li>
+</ol>
+<hr>
+<h2 id="-feature-detection-techniques-"><strong>Feature Detection Techniques</strong></h2>
+<h4 id="1-sift-scale-invariant-feature-transform-">1. <strong>SIFT (Scale-Invariant Feature Transform)</strong></h4>
+<ul>
+<li>Extracts scale and rotation invariant features.</li>
+<li>Most reliable method with <strong>85% accuracy</strong> when paired with CNN.</li>
+<li><img src="https://github.com/ann-sandra/Elephant-Alert-System/blob/main/image/sift.png?raw=trueg" alt="SIFT" width="400"/></li>
+</ul>
+<h4 id="2-surf-speed-up-robust-features-">2. <strong>SURF (Speed-Up Robust Features)</strong></h4>
+<ul>
+<li>Optimized SIFT using box filters for faster computation.</li>
+<li>Accuracy: <strong>75%</strong>.</li>
+<li><img src="https://github.com/ann-sandra/Elephant-Alert-System/blob/main/image/surf.png?raw=true" alt="SURF" width="400"/></li>
+</ul>
+<h4 id="3-hog-histogram-of-oriented-gradients-">3. <strong>HOG (Histogram of Oriented Gradients)</strong></h4>
+<ul>
+<li>Decomposes images into cells, computes gradients, and normalizes for feature extraction.</li>
+<li><img src="https://github.com/ann-sandra/Elephant-Alert-System/blob/main/image/hog.png?raw=true" alt="HOG" width="400"/></li>
+</ul>
+<h4 id="4-orb-oriented-fast-and-rotated-brief-">4. <strong>ORB (Oriented FAST and Rotated BRIEF)</strong></h4>
+<ul>
+<li>A binary descriptor for fast and robust object detection.</li>
+<li>Accuracy: <strong>75%</strong>.</li>
+<li><img src="https://github.com/ann-sandra/Elephant-Alert-System/blob/main/image/orb.png?raw=true" alt="ORB" width="400"/></li>
+</ul>
+<hr>
+<h2 id="-model-architecture-"><strong>Model Architecture</strong></h2>
+<h3 id="-convolutional-neural-network-cnn-"><strong>Convolutional Neural Network (CNN)</strong></h3>
+<ol>
+<li><strong>Input Layer:</strong>  <ul>
+<li>Accepts images with dimensions <strong>64×64</strong>.</li>
+</ul>
+</li>
+<li><strong>Convolutional Layers:</strong>  <ul>
+<li>Uses <strong>32 filters</strong> of size <strong>3×3</strong> in the first layer.</li>
+<li>Repeated convolutional and pooling steps three more times.</li>
+</ul>
+</li>
+<li><strong>Pooling Layers:</strong>  <ul>
+<li>Max pooling with a filter size of <strong>2×2</strong>.</li>
+</ul>
+</li>
+<li><strong>Dense Layer:</strong>  <ul>
+<li>Flattens the final output and connects to a fully connected layer.</li>
+</ul>
+</li>
+<li><p><strong>Output Layer:</strong>  </p>
+<ul>
+<li><p>Binary classification (elephant or not).</p>
+<p><img src="https://github.com/ann-sandra/Elephant-Alert-System/blob/main/image/CNN.png?raw=true" alt="CNN" width="400"/></p>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="-training-and-testing-"><strong>Training and Testing</strong></h2>
+<h4 id="-training-pipeline-"><strong>Training Pipeline</strong></h4>
+<ol>
+<li>Extract features using the selected method (SIFT, SURF, HOG, or ORB).</li>
+<li>Train the CNN on the preprocessed dataset.</li>
+<li>Evaluate the model using test images.</li>
+</ol>
+<h4 id="-testing-and-predictions-"><strong>Testing and Predictions</strong></h4>
+<ol>
+<li><strong>Image Prediction:</strong> <ul>
+<li>Classifies test images into &quot;elephant&quot; or &quot;other&quot;.</li>
+<li>Saves results in output folders.</li>
+</ul>
+</li>
+<li><strong>Video Prediction:</strong> <ul>
+<li>Processes video frames and predicts elephant presence.</li>
+<li>Visualizes results with bounding boxes for detected elephants.</li>
+</ul>
+</li>
+</ol>
+<h4 id="-output-logging-"><strong>Output Logging</strong></h4>
+<ul>
+<li><strong>Real-Time Alarm System:</strong> Triggers an alarm if an elephant is detected based on log files.</li>
+<li><strong>Confusion Matrix:</strong> Used to calculate and log accuracy, precision, recall, and F1-score.</li>
+</ul>
+<hr>
+<h2 id="-model-evaluation-"><strong>Model Evaluation</strong></h2>
+<ul>
+  <li>
+    <h3 id="results-overview"><strong>Results Overview</strong></h3>
+    <h4 id="sift"><strong>SIFT</strong></h4>
+    <ul>
+      <li><strong>Accuracy Score:</strong> 0.85</li>
+      <li>
+        <strong>Metrics:</strong>
+        <ul>
+          <li>Precision: 0.85</li>
+          <li>Recall: 0.85</li>
+          <li>F1-Score: 0.85</li>
+        </ul>
+      </li>
+    </ul>
+    <h4 id="surf"><strong>SURF</strong></h4>
+    <ul>
+      <li><strong>Accuracy Score:</strong> 0.75</li>
+      <li>
+        <strong>Metrics:</strong>
+        <ul>
+          <li>Precision: 0.75</li>
+          <li>Recall: 0.75</li>
+          <li>F1-Score: 0.75</li>
+        </ul>
+      </li>
+    </ul>
+    <h4 id="orb"><strong>ORB</strong></h4>
+    <ul>
+      <li><strong>Accuracy Score:</strong> 0.75</li>
+      <li>
+        <strong>Metrics:</strong>
+        <ul>
+          <li>Precision: 0.75</li>
+          <li>Recall: 0.75</li>
+          <li>F1-Score: 0.75</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<ul>
+<li><strong>SIFT</strong> performed the best with an accuracy of <strong>0.85</strong>.</li>
+<li><p><strong>SURF</strong> and <strong>ORB</strong> both achieved an accuracy of <strong>0.75</strong>, with similar metric scores.</p>
+</li>
+<li><p><strong>ROC Curve:</strong> Used to visualize model performance with a threshold of:</p>
+<ul>
+<li>SIFT: <strong>0.85 Sensitivity</strong></li>
+<li>SURF: <strong>0.75 Sensitivity</strong></li>
+<li>ORB: <strong>0.75 Sensitivity</strong></li>
+</ul>
+</li>
+</ul>
+<h3 id="-performance-comparison-"><strong>Performance Comparison</strong></h3>
+<table>
+<thead>
+<tr>
+<th><strong>Feature Detection Method</strong></th>
+<th><strong>Accuracy</strong></th>
+<th><strong>Sensitivity</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SIFT + CNN</td>
+<td>85%</td>
+<td>0.85</td>
+</tr>
+<tr>
+<td>SURF + CNN</td>
+<td>75%</td>
+<td>0.75</td>
+</tr>
+<tr>
+<td>ORB + CNN</td>
+<td>75%</td>
+<td>0.75</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="-roc-curve-"><strong>ROC Curve Visualization:</strong></h3>
+<ul>
+<li>Receiver Operating Characteristic plot visualizes TPR vs. FPR for binary classification.</li>
+<li><p>Threshold:</p>
+<ul>
+<li><strong>SIFT-CNN:</strong> 0.85</li>
+<li><img src="https://github.com/ann-sandra/Elephant-Alert-System/blob/main/image/siftroc.png?raw=true" alt="SIFT ROC" width="400"/> </li>
+<li><strong>SURF-CNN:</strong> 0.75</li>
+<li><img src="https://github.com/ann-sandra/Elephant-Alert-System/blob/main/image/surfroc.png?raw=true" alt="SURF ROC" width="400"/></li>
+<li><strong>ORB-CNN:</strong> 0.75</li>
+<li><p><img src="https://github.com/ann-sandra/Elephant-Alert-System/blob/main/image/orbroc.png?raw=true" alt="ORB ROC" width="400"/></p>
+</li>
+<li><p>We choose SIFT as the FPR increment is linear with increase in TPR till 85% hence we will be able to get a better accuracy compared to SURF and ORB where the increase in FPR does not increase the TPR after 75% leading to lower accuracy.</p>
+</li>
+<li>Hence, SIFT with a threshold of 85% is chosen as ideal with high TPR and minimal FPR.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="-prediction-functions-"><strong>Prediction Functions</strong></h2>
+<h3 id="-image-prediction-"><strong>Image Prediction</strong></h3>
+<ul>
+<li><strong><code>predictTestImages</code></strong>: Classifies input images as &quot;elephant&quot; or &quot;other&quot; and saves the results in respective folders.</li>
+</ul>
+<h3 id="-video-prediction-"><strong>Video Prediction</strong></h3>
+<ol>
+<li><strong><code>predictTestVideoSamples</code></strong>  <ul>
+<li>Converts video frames into grayscale and predicts elephant presence for each frame.</li>
+</ul>
+</li>
+<li><strong><code>predictVideoSamples</code></strong>  <ul>
+<li>Processes video samples in real time and visualizes results with bounding boxes.</li>
+</ul>
+</li>
+</ol>
+<h3 id="-output-logging-"><strong>Output Logging</strong></h3>
+<ul>
+<li><strong><code>writeToFile</code></strong>: Writes detection results to a file, which can trigger an alarm if an elephant is detected.</li>
+</ul>
+<hr>
+<h2 id="-key-findings-"><strong>Key Findings</strong></h2>
+<ol>
+<li>SIFT-CNN demonstrated the highest accuracy (<strong>85%</strong>) for elephant detection.</li>
+<li>Low-power Raspberry Pi is effective for real-time edge computing.</li>
+<li>Robust feature extraction techniques like SIFT and HOG enhance detection capabilities.</li>
+</ol>
+<hr>
+<h2 id="-future-enhancements-"><strong>Future Enhancements</strong></h2>
+<ol>
+<li>Improve model accuracy using more advanced neural network architectures.</li>
+<li>Expand the dataset with additional elephant and non-elephant images.</li>
+<li>Implement a mobile application for real-time alerts and monitoring.</li>
+<li>Integrate IoT-based alarm systems for remote areas.</li>
+</ol>
+<hr>
+<h2 id="-conclusion-"><strong>Conclusion</strong></h2>
+<p>This project successfully showcases a scalable, low-cost solution for detecting wild elephants using Raspberry Pi and CNN. The SIFT-CNN model emerged as the most effective with an accuracy of 85%, making it a reliable choice for real-time edge computing applications. This system can play a crucial role in mitigating human-elephant conflict and promoting harmonious coexistence.</p>
+
+</div>
+
+
+
+
+
+<!-- Sticky Navigation Bar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="#home">Portfolio</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html#home">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="index.html#about">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="index.html#projects">Featured</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="index.html#mlprojects">ML Projects</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="index.html#dlprojects">DL Projects</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Bootstrap JS and dependencies (jQuery and Popper) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.9.5/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
