@@ -347,24 +347,24 @@ html {
 <h2 id="-feature-detection-techniques-"><strong>Feature Detection Techniques</strong></h2>
 <h4 id="1-sift-scale-invariant-feature-transform-">1. <strong>SIFT (Scale-Invariant Feature Transform)</strong></h4>
 <ul>
-<li>Extracts scale and rotation invariant features.</li>
+<li>SIFT image features provide a set of features of an object which are scale invariant and rotation invariant. This makes this method a flexible feature detection method as it removes many complications.</li>
 <li>Most reliable method with <strong>85% accuracy</strong> when paired with CNN.</li>
 <li><img src="https://github.com/ann-sandra/Elephant-Alert-System/blob/main/image/sift.png?raw=trueg" alt="SIFT" width="400"/></li>
 </ul>
 <h4 id="2-surf-speed-up-robust-features-">2. <strong>SURF (Speed-Up Robust Features)</strong></h4>
 <ul>
-<li>Optimized SIFT using box filters for faster computation.</li>
+<li>SURF is a patented local feature detector and descriptor in computer vision. While SIFT uses the Laplacian of Gaussian (LoG) to find the scale space, SURF approximates LoG with a box filter, enabling faster computation using integral images and parallel processing across scales.</li>
 <li>Accuracy: <strong>75%</strong>.</li>
 <li><img src="https://github.com/ann-sandra/Elephant-Alert-System/blob/main/image/surf.png?raw=true" alt="SURF" width="400"/></li>
 </ul>
 <h4 id="3-hog-histogram-of-oriented-gradients-">3. <strong>HOG (Histogram of Oriented Gradients)</strong></h4>
 <ul>
-<li>Decomposes images into cells, computes gradients, and normalizes for feature extraction.</li>
+<li>HOG extracts global features by dividing an image into small cells, calculating the histogram of oriented gradients for each, normalizing the results block-wise, and returning a descriptor for each cell. However, it is less efficient than SIFT, which extracts local features with key points and offers scale and rotation invariance—capabilities that HOG lacks.</li>
 <li><img src="https://github.com/ann-sandra/Elephant-Alert-System/blob/main/image/hog.png?raw=true" alt="HOG" width="400"/></li>
 </ul>
 <h4 id="4-orb-oriented-fast-and-rotated-brief-">4. <strong>ORB (Oriented FAST and Rotated BRIEF)</strong></h4>
 <ul>
-<li>A binary descriptor for fast and robust object detection.</li>
+<li>ORB, a fast binary descriptor based on BRIEF, is rotation-invariant and noise-resistant. It serves as an excellent alternative to SIFT and SURF due to its noise and scale invariance. While ORB and SURF outperform SIFT in angle-proportional images, ORB and SIFT excel over SURF in noisy conditions, making ORB a consistently reliable choice across scenarios.</li>
 <li>Accuracy: <strong>75%</strong>.</li>
 <li><img src="https://github.com/ann-sandra/Elephant-Alert-System/blob/main/image/orb.png?raw=true" alt="ORB" width="400"/></li>
 </ul>
