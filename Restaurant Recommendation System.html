@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Restaurant Recommendation System</title>
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<style>
+
+h2 {
+    font-size: 30px;
+font-weight: bold;
+}
+h3 {
+    font-size: 23px;
+}
+h4 {
+    font-size: 20px;
+}
+
+        ul {
+            margin: 10px 20px;
+            padding: 0;
+        }
+        ul li {
+            margin: 5px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: white;
+        }
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        table th {
+            background-color: #f2f2f2;
+        }
+        table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        table tr:hover {
+            background-color: #f1f1f1;
+        }
+        code {
+            background-color: #eef;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: monospace;
+		color: black;
+        }
+        .projects {
+            margin-bottom: 20px;
+        }
+        .projects:last-child {
+            margin-bottom: 0;
+        }
+
+  .about-section {
+    text-align: center;
+    padding: 5px 0;
+  }
+  .about-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+  }
+  .about-section img {
+    width: 200px; /* Adjust the size as needed */
+    height: 200px;
+    border-radius: 50%; /* Makes the image round */
+    margin-bottom: 10px;
+  }
+  .about-section p {
+    color: #333;
+  }
+
+  /* Additional CSS for Projects Section */
+.projects-section h2 {
+  margin-bottom: 40px;
+  font-size: 2.5rem;
+}
+
+.projects-section {
+  margin-bottom: 100px;
+}
+.card {
+  box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Adds a subtle shadow around the card */
+}
+.card-img-top {
+  max-height: 250px; /* Adjust this value to fit the image properly in the card */
+  object-fit: cover; /* This makes sure the image covers the area properly */
+}
+.card-body {
+  padding: 15px;
+}
+.card-title {
+  font-size: 1.25rem;
+}
+.card-text {
+  margin-bottom: 15px;
+}
+
+/* Additional CSS for Skills Section */
+.skills-section h2 {
+  margin-bottom: 40px;
+  font-size: 2.5rem;
+}
+.skills-section .card {
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+.skills-section .card-img-top {
+  padding: 20px; /* Add padding around your images if needed */
+  background-color: #f8f9fa; /* Adjust the background color if your images have transparent areas */
+  height: 180px; /* Fixed height for consistency */
+  object-fit: contain; /* This will make sure the image is scaled properly within the container */
+}
+.skills-section .card-body {
+  padding: 15px;
+}
+.skills-section .card-title {
+  font-size: 1.25rem;
+  margin-bottom: 15px;
+}
+.skills-section .btn-outline-primary {
+  color: #007bff;
+  border-color: #007bff;
+}
+.skills-section .btn-outline-primary:hover {
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+/* Additional CSS for Contact Section */
+.contact-section {
+  padding: 15px 0;
+  text-align: center;
+}
+.contact-section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+}
+.contact-section p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+.social-icon {
+  width: 50px; /* Size of your icons */
+  margin-bottom: 5px;
+}
+/* Hover effect for icons */
+.social-icon:hover {
+  opacity: 0.7;
+}
+/* Style for links in the Contact section */
+.contact-section a {
+  color: #fff;
+  text-decoration: none; /* Removes underline from links */
+  display: inline-block; /* Allows for margin on the bottom */
+  margin-bottom: 10px;
+}
+.contact-section a:hover {
+  color: #ddd; /* Color when hovering over the link */
+}
+
+/* CSS for Sticky Navbar */
+.navbar {
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Adds a shadow for depth */
+}
+
+/* Ensure padding is added to body to avoid content being hidden behind the navbar */
+body { 
+  padding-top: 56px; /* Adjust this value based on the height of your navbar */
+  margin: 0;
+  width: 100%;
+max-width: 100%;
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Style for navigation bar links */
+.navbar-nav .nav-link {
+  color: white;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #f8f9fa; /* Slightly lighter white when hovering over links */
+}
+
+/* Media query for responsive navbar collapsing */
+@media (max-width: 992px) {
+  .navbar-collapse {
+    background-color: #343a40; /* Same as navbar color for seamless look */
+  }
+}
+
+
+
+
+
+/* Hide overlay content by default */
+.project-card .overlay-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Show overlay content on hover */
+.project-card:hover .overlay-content {
+  opacity: 1;
+}
+
+/* Show only the title initially */
+.project-card .card-title {
+  font-size: 1.5rem;
+  color: #fff;
+}
+
+.project-card .card-text,
+.project-card .btn {
+  display: none;
+}
+
+/* Display additional content on hover */
+.project-card:hover .card-text,
+.project-card:hover .btn {
+  display: block;
+}
+
+  .responsive-img {
+    max-width: 100%;
+    height: auto;
+  }
+
+
+
+</style>
+
+</head>
+<body>
+<div class="container-fluid">
+<section class="about-section" style=" padding: 40px 0 10px 0; text-align: center;">
+  <h2 style="color: black; font-weight: bold;">Restaurant Recommendation System</h2>
+</section>
+
+
+<h2 id="overview">Overview</h2>
+<p>This project implements a <strong>Restaurant Recommendation System</strong> using <strong>collaborative filtering</strong> methods to predict ratings and recommend restaurants to users. Collaborative filtering is a widely used technique in recommendation engines for predicting user preferences based on similar users or items. The project explores both <strong>memory-based</strong> and <strong>model-based</strong> approaches to provide recommendations.</p>
+<hr>
+<h2 id="approaches-implemented">Approaches Implemented</h2>
+<h3 id="1-memory-based-filtering-">1. <strong>Memory-Based Filtering</strong></h3>
+<p>Memory-based collaborative filtering uses raw data to calculate similarities and generate recommendations.  </p>
+<h4 id="a-user-based-filtering-">a. <strong>User-Based Filtering</strong></h4>
+<ul>
+<li><strong>Method</strong>: Pearson Correlation  </li>
+<li><p><strong>Process</strong>:<br>Identifies users who are similar to the target user based on their ratings and generates recommendations from their preferences.</p>
+</li>
+<li><p><strong>Formula</strong>:  </p>
+</li>
+</ul>
+<p>The similarity between two users (u) and (v) is calculated using the following formula:</p>
+<p>sim(u, v) = </p>
+<pre><code><span class="hljs-section">∑(i ∈ Iuv) (r(u,i) - r̄u)(r(v,i) - r̄v)
+--------------------------------------</span>
+√[∑(i ∈ Iuv) (r(u,i) - r̄u)²] * √[∑(i ∈ Iuv) (r(v,i) - r̄v)²]
+</code></pre><p>Where:</p>
+<ul>
+<li>r(u,i): Rating given by user (u) for item (i).</li>
+<li>r̄u: Average rating of user (u).</li>
+<li>Iuv: Set of items rated by both users (u) and (v).</li>
+</ul>
+<ul>
+<li><p><strong>Functions</strong>:  </p>
+<ul>
+<li><code>pearson(user1, user2, df)</code>: Calculates similarity between two users.  </li>
+<li><code>get_neighbours(user_id, df)</code>: Identifies users most similar to the target user.  </li>
+<li><code>recommend(user, df, n_users=2, n_recommendations=2)</code>: Generates recommendations for a user based on neighbors&#39; weighted scores.  </li>
+</ul>
+</li>
+<li><p><strong>Example</strong>:<br>The neighbors of user <code>U1103</code> are:  </p>
+<ul>
+<li><code>(&#39;U1068&#39;, similarity = 0.79)</code>  </li>
+<li><code>(&#39;U1028&#39;, similarity = 0.297)</code>  </li>
+</ul>
+</li>
+</ul>
+<h4 id="b-item-based-filtering-">b. <strong>Item-Based Filtering</strong></h4>
+<ul>
+<li><strong>Method</strong>: Slope-One Recommendation  </li>
+<li><p><strong>Process</strong>:<br>Predicts ratings by calculating the average difference between ratings of item pairs and adjusting based on user preferences.</p>
+</li>
+<li><p><strong>Formula</strong>:<br>For an item (i) and another item (j):</p>
+</li>
+</ul>
+<div align="center"> 
+    dev(i, j) = (Σ (r<sub>u,j</sub> - r<sub>u,i</sub>)) / |U<sub>ij</sub>|
+</div>
+
+<p>Where:</p>
+<ul>
+<li>U<sub>ij</sub>: Set of users who rated both items (i) and (j).  </li>
+<li>r<sub>u,j</sub>: Rating given by user (u) for item (j).</li>
+</ul>
+<p>Predicted rating for item (i):</p>
+<div align="center"> 
+    r̂<sub>u,i</sub> = (Σ [(dev(i, j) + r<sub>u,j</sub>) * f(i, j)]) / Σ f(i, j)
+</div>
+
+<p>Where f(i, j) is the frequency of co-occurrence between (i) and (j).</p>
+<ul>
+<li><strong>Functions</strong>:  <ul>
+<li><code>get_dev_fr(data)</code>: Computes average differences and frequencies between item pairs.  </li>
+<li><code>slopeone(user, data)</code>: Predicts ratings for unrated items using weighted differences.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="2-model-based-filtering-">2. <strong>Model-Based Filtering</strong></h3>
+<p>Model-based collaborative filtering involves building a model to uncover patterns in the data.  </p>
+<h4 id="a-method-alternating-least-squares-als-">a. <strong>Method</strong>: Alternating Least Squares (ALS)</h4>
+<ul>
+<li><strong>Process</strong>:<br>Given a rating matrix (R):</li>
+</ul>
+<div align="center"> 
+    R ≈ U ⋅ P<sup>T</sup>
+</div>
+
+<p>Where:</p>
+<ul>
+<li>U: User-feature matrix  </li>
+<li>P: Item-feature matrix  </li>
+</ul>
+<p>The optimization problem is to minimize the following cost function:</p>
+<div align="center"> 
+    J = Σ [(R<sub>ui</sub> - U<sub>u</sub> ⋅ P<sub>i</sub><sup>T</sup>)² + λ (|U|² + |P|²)]
+</div>
+
+<p>Where:</p>
+<ul>
+<li>λ: Regularization parameter to prevent overfitting.</li>
+</ul>
+<hr>
+<h2 id="data-source">Data Source</h2>
+<p>The dataset used for this project is sourced from the <a href="https://archive.ics.uci.edu/ml/datasets/Restaurant+%26+consumer+data">UCI Machine Learning Repository</a>.  </p>
+<h3 id="dataset-structure"><strong>Dataset Structure</strong></h3>
+<p>The primary dataset file is <code>rating_final.csv</code>, which contains the following columns:  </p>
+<ul>
+<li><code>userID</code>  </li>
+<li><code>placeID</code>  </li>
+<li><code>rating</code>  </li>
+<li><code>food_rating</code>  </li>
+<li><code>service_rating</code>  </li>
+</ul>
+<p><strong>Note</strong>: Ratings are given on a scale of 0 to 2. Zero ratings are replaced with a very small value to distinguish them from missing ratings. Only overall ratings are used in this analysis.  </p>
+<hr>
+<h2 id="libraries-used">Libraries Used</h2>
+<ul>
+<li><strong>pandas</strong>  </li>
+<li><strong>numpy</strong>  </li>
+</ul>
+<hr>
+<h2 id="advantages-disadvantages-of-approaches">Advantages &amp; Disadvantages of Approaches</h2>
+<h3 id="memory-based-filtering"><strong>Memory-Based Filtering</strong></h3>
+<p><strong>Advantages</strong>:  </p>
+<ul>
+<li>Simple implementation  </li>
+<li>Easy to explain results  </li>
+<li>Supports new user addition seamlessly  </li>
+</ul>
+<p><strong>Disadvantages</strong>:  </p>
+<ul>
+<li>Slow with large datasets (loads all data into memory)  </li>
+<li>Sparse data may lead to missing recommendations  </li>
+</ul>
+<h3 id="model-based-filtering"><strong>Model-Based Filtering</strong></h3>
+<p><strong>Advantages</strong>:  </p>
+<ul>
+<li>Performs well on sparse datasets  </li>
+<li>Reduces overfitting issues  </li>
+</ul>
+<p><strong>Disadvantages</strong>:  </p>
+<ul>
+<li>Possible information loss due to dimensionality reduction  </li>
+<li>Results can be harder to interpret  </li>
+</ul>
+<hr>
+<h2 id="citation">Citation</h2>
+<p>Blanca Vargas-Govea, Juan Gabriel González-Serna, Rafael Ponce-Medellín. <em>Effects of relevant contextual features in the performance of a restaurant recommender system.</em> In RecSys’11: Workshop on Context Aware Recommender Systems (CARS-2011), Chicago, IL, USA, October 23, 2011.  </p>
+<p>This project demonstrates the implementation of collaborative filtering methods, including <strong>user-based filtering</strong>, <strong>item-based filtering</strong>, and <strong>ALS</strong>, for building a robust restaurant recommendation system.</p>
+
+</div>
+
+
+
+
+
+<!-- Sticky Navigation Bar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="index.html#home">Portfolio</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html#home">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="index.html#about">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="index.html#projects">Featured</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="index.html#mlprojects">ML Projects</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="index.html#dlprojects">DL Projects</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Bootstrap JS and dependencies (jQuery and Popper) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.9.5/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
